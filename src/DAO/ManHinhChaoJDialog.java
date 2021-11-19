@@ -1,73 +1,51 @@
-package StartUp;
+package DAO;
 
-import javax.swing.ImageIcon;
+import StartUp.*;
 import javax.swing.Timer;
 
 public class ManHinhChaoJDialog extends javax.swing.JDialog {
-ImageIcon nen = new ImageIcon("src\\icon\\giphy.gif");
+    
     Timer t;
-
     public ManHinhChaoJDialog(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
         init();
-        lblNen.setIcon(nen);
-
     }
-
-    public void init() {
-
+    public void init(){
+        
         setLocationRelativeTo(null);
         //thread là 1 khối mã thực hiện nhiệm vụ
-        Thread t = new Thread() {
-            int i = -1;
-
+        Thread t = new Thread(){
+            int i=-1;
             @Override
             public void run() {
-                while (true) {
-                    try {
+                while(true){
+                    try{
                         i++;
                         prg.setValue(i);
-                        if (i == 20) {
-                            lblChao.setText("Đang khởi tạo cái modun...");
-                        }
-                        if (i == 30) {
-                            lblChao.setText("Đang khởi tạo cái modun...");
-                        }
-                        if (i == 40) {
-                            lblChao.setText("Đang khởi tạo cái modun...");
-                        }
-                        if (i == 50) {
-                            lblChao.setText("Đang kết nối CSDL...");
-                        }
-                        if (i == 60) {
-                            lblChao.setText("Đang kết nối CSDL...");
-                        }
-                        if (i == 70) {
-                            lblChao.setText("Chuẩn bị vào trương trình...");
-                        }
-                        if (i == 80) {
-                            lblChao.setText("Chuẩn bị vào trương trình...");
-                        }
-                        if (i == 90) {
-                            lblChao.setText("Chào mừng bạn đến với app!");
-                        }
-                        if (i == 100) {
+                        if(i==20)lblChao.setText("Đang khởi tạo cái modun...");
+                        if(i==30)lblChao.setText("Đang khởi tạo cái modun...");
+                        if(i==40)lblChao.setText("Đang khởi tạo cái modun...");
+                        if(i==50)lblChao.setText("Đang kết nối CSDL...");
+                        if(i==60)lblChao.setText("Đang kết nối CSDL...");
+                        if(i==70)lblChao.setText("Chuẩn bị vào trương trình...");
+                        if(i==80)lblChao.setText("Chuẩn bị vào trương trình...");
+                        if(i==90)lblChao.setText("Chào mừng bạn đến với app!");
+                        if(i==100){
                             ManHinhChaoJDialog.this.dispose(); //đóng
                             break;
                         }
                         Thread.sleep(60); // thread tạm thời dừng hoạt động trong 20s
-                    } catch (InterruptedException ex) {
+                    }catch(InterruptedException ex){
                         break;
                     }
                 }
             }
-
+          
         };
         t.start(); //thead bắt đầu hoạt động
-
+        
     }
-
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -144,6 +122,8 @@ ImageIcon nen = new ImageIcon("src\\icon\\giphy.gif");
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(ManHinhChaoJDialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 
