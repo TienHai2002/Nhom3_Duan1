@@ -65,7 +65,6 @@ public class KhachHangJInternalFrame extends javax.swing.JInternalFrame {
         btnFirst = new javax.swing.JButton();
         jLabel10 = new javax.swing.JLabel();
         txtMaNV = new javax.swing.JTextField();
-        DCNgaySinh = new com.toedter.calendar.JDateChooser();
 
         setClosable(true);
         setIconifiable(true);
@@ -79,7 +78,7 @@ public class KhachHangJInternalFrame extends javax.swing.JInternalFrame {
 
         tabs.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
-        pn4.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Tìm Kiếm", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 14))); // NOI18N
+        pn4.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Tìm Kiếm", 0, 0, new java.awt.Font("Tahoma", 1, 14))); // NOI18N
 
         txtTimKiem.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
@@ -340,8 +339,7 @@ public class KhachHangJInternalFrame extends javax.swing.JInternalFrame {
                                     .addComponent(jLabel6)
                                     .addComponent(jLabel3)
                                     .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 268, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txtMaNV, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(DCNgaySinh, javax.swing.GroupLayout.PREFERRED_SIZE, 268, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(txtMaNV, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(0, 0, Short.MAX_VALUE)))))
                 .addContainerGap())
         );
@@ -360,16 +358,11 @@ public class KhachHangJInternalFrame extends javax.swing.JInternalFrame {
                 .addGroup(pn3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel5)
                     .addComponent(jLabel6))
-                .addGroup(pn3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(pn3Layout.createSequentialGroup()
-                        .addGap(7, 7, 7)
-                        .addGroup(pn3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(rdoNam)
-                            .addComponent(rdoNu)))
-                    .addGroup(pn3Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(DCNgaySinh, javax.swing.GroupLayout.DEFAULT_SIZE, 39, Short.MAX_VALUE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(7, 7, 7)
+                .addGroup(pn3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(rdoNam)
+                    .addComponent(rdoNu))
+                .addGap(21, 21, 21)
                 .addGroup(pn3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
                     .addComponent(jLabel7))
@@ -493,7 +486,6 @@ public class KhachHangJInternalFrame extends javax.swing.JInternalFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private com.toedter.calendar.JDateChooser DCNgaySinh;
     private javax.swing.JButton btnFirst;
     private javax.swing.JButton btnLast;
     private javax.swing.JButton btnMoi;
