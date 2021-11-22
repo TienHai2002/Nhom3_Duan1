@@ -2,9 +2,13 @@ package StartUp;
 
 import DAO.NhanVienDAO;
 import model.NhanVien;
+
+import helper.*;
+
 import helper.DateHelper;
 import helper.MsgBoxHelper;
 import helper.ShareHelper;
+
 import java.awt.Color;
 import java.awt.Image;
 import java.awt.image.BufferedImage;
@@ -816,7 +820,11 @@ public class NhanVienJInternalFrame extends javax.swing.JInternalFrame {
     }
 
 //    void chonAnh() {
+
+//        JFileChooser jfc = new JFileChooser("\\src\\AnhNV");
+
 //        JFileChooser jfc = new JFileChooser("C:\\quang02.github.io\\Duan1\\src\\AnhNV");
+
 //        if (jfc.showOpenDialog(this) == JFileChooser.APPROVE_OPTION) {
 //            File file = jfc.getSelectedFile();
 //            BufferedImage img;
