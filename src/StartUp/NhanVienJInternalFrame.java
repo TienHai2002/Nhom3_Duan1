@@ -2,10 +2,9 @@ package StartUp;
 
 import DAO.NhanVienDAO;
 import model.NhanVien;
-import utils.Auth;
-import utils.MsgBox;
-import utils.XDate;
-import utils.XImage;
+import helper.DateHelper;
+import helper.MsgBoxHelper;
+import helper.ShareHelper;
 import java.awt.Color;
 import java.awt.Image;
 import java.awt.image.BufferedImage;
@@ -528,7 +527,7 @@ public class NhanVienJInternalFrame extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_tblDanhSachMouseClicked
 
     private void lblHinhAnhMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblHinhAnhMouseClicked
-        chonAnh();
+//        chonAnh();
     }//GEN-LAST:event_lblHinhAnhMouseClicked
 
 
@@ -595,56 +594,56 @@ public class NhanVienJInternalFrame extends javax.swing.JInternalFrame {
 
     void insert() {
         NhanVien nv = getForm();
-        if (!Auth.isManager()) {
-            MsgBox.alert(this, "Bạn không có quyền thêm nhân viên !!");
+        if (!ShareHelper.isManager()) {
+            MsgBoxHelper.alert(this, "Bạn không có quyền thêm nhân viên !!");
         } else {
             try {
                 dao.insert(nv);
                 this.fillTable(0);
                 this.clearForm();
-                MsgBox.alert(this, "Thêm mới thành công !!");
+                MsgBoxHelper.alert(this, "Thêm mới thành công !!");
                 lblChiSo.setText(1 + "");
             } catch (Exception e) {
                 e.printStackTrace();
-                MsgBox.alert(this, "Mã NV đã tồn tại !!");
+                MsgBoxHelper.alert(this, "Mã NV đã tồn tại !!");
             }
         }
     }
 
     void update() {
         NhanVien nv = getForm();
-        if (!Auth.isManager()) {
-            MsgBox.alert(this, "Bạn không có quyền sửa nhân viên !!");
+        if (!ShareHelper.isManager()) {
+            MsgBoxHelper.alert(this, "Bạn không có quyền sửa nhân viên !!");
         } else {
             try {
                 dao.update(nv);
                 this.fillTable(0);
-                MsgBox.alert(this, "Sửa thành công !!");
+                MsgBoxHelper.alert(this, "Sửa thành công !!");
                 lblChiSo.setText(1 + "");
             } catch (Exception e) {
                 e.printStackTrace();
-                MsgBox.alert(this, "Sửa thất bại !!");
+                MsgBoxHelper.alert(this, "Sửa thất bại !!");
             }
         }
     }
 
     void vohieuhoa() {
-        if (!Auth.isManager()) {
-            MsgBox.alert(this, "Bạn không có quyền vô hiệu hóa nhân viên !!");
+        if (!ShareHelper.isManager()) {
+            MsgBoxHelper.alert(this, "Bạn không có quyền vô hiệu hóa nhân viên !!");
         } else {
             String maNV = txtMaNV.getText();
-            if (maNV.equals(Auth.user.getMaNV())) {
-                MsgBox.alert(this, "Bạn không có thể vô hiệu hóa chính bạn !!");
-            } else if (MsgBox.confirm(this, "Bạn thực sự muốn vô hiệu hóa nhân viên này ?")) {
+            if (maNV.equals(ShareHelper.user.getMaNV())) {
+                MsgBoxHelper.alert(this, "Bạn không có thể vô hiệu hóa chính bạn !!");
+            } else if (MsgBoxHelper.confirm(this, "Bạn thực sự muốn vô hiệu hóa nhân viên này ?")) {
                 try {
                     dao.vohieuhoa(maNV);
                     fillTable(0);
                     clearForm();
-                    MsgBox.alert(this, "Vô hiệu hóa thành công !!");
+                    MsgBoxHelper.alert(this, "Vô hiệu hóa thành công !!");
                     lblChiSo.setText(1 + "");
                 } catch (Exception e) {
                     e.printStackTrace();
-                    MsgBox.alert(this, "Vô hiệu hóa thất bại !!");
+                    MsgBoxHelper.alert(this, "Vô hiệu hóa thất bại !!");
                 }
             }
         }
@@ -708,7 +707,7 @@ public class NhanVienJInternalFrame extends javax.swing.JInternalFrame {
             lblChiSo.setText(index + 1 + "");
         } catch (Exception e) {
             e.printStackTrace();
-            MsgBox.alert(this, "Lỗi truy vấn dữ liệu !");
+            MsgBoxHelper.alert(this, "Lỗi truy vấn dữ liệu !");
         }
     }
     List<NhanVien> list = dao.selectAll();
@@ -743,7 +742,7 @@ public class NhanVienJInternalFrame extends javax.swing.JInternalFrame {
         txtTenNV.setText(nv.getTenNV());
         txtSDT.setText(nv.getsDT());
         txtEmail.setText(nv.getEmail());
-        DCNgaySinh.setDate(XDate.toDate(nv.getNgaySinh(), "yyyy-MM-dd"));
+        DCNgaySinh.setDate(DateHelper.toDate(nv.getNgaySinh(), "yyyy-MM-dd"));
         rdoNam.setSelected(nv.isGioiTinh());
         rdoQuanLy.setSelected(nv.isVaiTro());
         txtDiaChi.setText(nv.getDiaChi());
@@ -771,7 +770,7 @@ public class NhanVienJInternalFrame extends javax.swing.JInternalFrame {
         nv.setDiaChi(txtDiaChi.getText());
         nv.setsDT(txtSDT.getText());
         nv.setEmail(txtEmail.getText());
-        nv.setNgaySinh(XDate.toString(DCNgaySinh.getDate(), "yyyy-MM-dd"));
+        nv.setNgaySinh(DateHelper.toString(DCNgaySinh.getDate(), "yyyy-MM-dd"));
         nv.setGioiTinh(rdoNam.isSelected());
         nv.setAnhNV(lblHinhAnh.getToolTipText());
         nv.setVaiTro(rdoQuanLy.isSelected());
@@ -796,11 +795,11 @@ public class NhanVienJInternalFrame extends javax.swing.JInternalFrame {
 
     boolean checkForm() {
         if (txtMaNV.getText().equals("")) {
-            MsgBox.alert(this, "Không để trống mã nhân viên");
+            MsgBoxHelper.alert(this, "Không để trống mã nhân viên");
             txtMaNV.requestFocus();
             return false;
         } else if (txtTenNV.getText().equals("")) {
-            MsgBox.alert(this, "Không để trống họ tên");
+            MsgBoxHelper.alert(this, "Không để trống họ tên");
             txtTenNV.requestFocus();
             return false;
 //        } else if (txtTenNV.getText().equals("")) {
@@ -816,24 +815,24 @@ public class NhanVienJInternalFrame extends javax.swing.JInternalFrame {
         }
     }
 
-    void chonAnh() {
-        JFileChooser jfc = new JFileChooser("C:\\quang02.github.io\\Duan1\\src\\AnhNV");
-        if (jfc.showOpenDialog(this) == JFileChooser.APPROVE_OPTION) {
-            File file = jfc.getSelectedFile();
-            BufferedImage img;
-            try {
-                img = ImageIO.read(file);
-                Image dimg = img.getScaledInstance(lblHinhAnh.getWidth(), lblHinhAnh.getHeight(),
-                        Image.SCALE_SMOOTH);
-                ImageIcon imageIcon = new ImageIcon(dimg);
-                lblHinhAnh.setIcon(imageIcon);
-
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-            XImage.save(file); //lưu hình vào thư mục logo
-            ImageIcon icon = XImage.read(file.getName()); //đọc hình từ logo
-            lblHinhAnh.setToolTipText(file.getName());
-        }
-    }
+//    void chonAnh() {
+//        JFileChooser jfc = new JFileChooser("C:\\quang02.github.io\\Duan1\\src\\AnhNV");
+//        if (jfc.showOpenDialog(this) == JFileChooser.APPROVE_OPTION) {
+//            File file = jfc.getSelectedFile();
+//            BufferedImage img;
+//            try {
+//                img = ImageIO.read(file);
+//                Image dimg = img.getScaledInstance(lblHinhAnh.getWidth(), lblHinhAnh.getHeight(),
+//                        Image.SCALE_SMOOTH);
+//                ImageIcon imageIcon = new ImageIcon(dimg);
+//                lblHinhAnh.setIcon(imageIcon);
+//
+//            } catch (IOException e) {
+//                e.printStackTrace();
+//            }
+//            XImage.save(file); //lưu hình vào thư mục logo
+//            ImageIcon icon = XImage.read(file.getName()); //đọc hình từ logo
+//            lblHinhAnh.setToolTipText(file.getName());
+//        }
+//    }
 }
