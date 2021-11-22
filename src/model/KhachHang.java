@@ -10,9 +10,9 @@ public class KhachHang {
     private boolean gioiTinh;
     private int diemThuong;
     private String maNV;
+    private boolean trangThai;
 
-    public KhachHang(String maKH, String tenKH, String sDT, String Email, String ngaySinh, boolean gioiTinh, int diemThuong, String maNV) {
-
+    public KhachHang(String maKH, String tenKH, String sDT, String Email, String ngaySinh, boolean gioiTinh, int diemThuong, String maNV, boolean trangThai) {
         this.maKH = maKH;
         this.tenKH = tenKH;
         this.sDT = sDT;
@@ -21,6 +21,7 @@ public class KhachHang {
         this.gioiTinh = gioiTinh;
         this.diemThuong = diemThuong;
         this.maNV = maNV;
+        this.trangThai = trangThai;
     }
 
     public KhachHang() {
@@ -88,6 +89,14 @@ public class KhachHang {
 
     public void setMaNV(String maNV) {
         this.maNV = maNV;
+    }
+
+    public boolean isTrangThai() {
+        return trangThai;
+    }
+
+    public void setTrangThai(boolean trangThai) {
+        this.trangThai = trangThai;
     }
 
 }

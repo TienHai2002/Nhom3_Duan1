@@ -8,19 +8,15 @@ public class KhuyenMai {
     private String tenKM;
     private String giaTriKM;
     private String ngayTao;
-    private String ngayBatDau;
-    private String ngayKetThuc;
     private String ghiChu;
 
-    public KhuyenMai(String maKM, String maNV, String maSP, String tenKM, String giaTriKM, String ngayTao, String ngayBatDau, String ngayKetThuc, String ghiChu) {
+    public KhuyenMai(String maKM, String maNV, String maSP, String tenKM, String giaTriKM, String ngayTao, String ghiChu) {
         this.maKM = maKM;
         this.maNV = maNV;
         this.maSP = maSP;
         this.tenKM = tenKM;
         this.giaTriKM = giaTriKM;
         this.ngayTao = ngayTao;
-        this.ngayBatDau = ngayBatDau;
-        this.ngayKetThuc = ngayKetThuc;
         this.ghiChu = ghiChu;
     }
 
@@ -73,22 +69,6 @@ public class KhuyenMai {
 
     public void setNgayTao(String ngayTao) {
         this.ngayTao = ngayTao;
-    }
-
-    public String getNgayBatDau() {
-        return ngayBatDau;
-    }
-
-    public void setNgayBatDau(String ngayBatDau) {
-        this.ngayBatDau = ngayBatDau;
-    }
-
-    public String getNgayKetThuc() {
-        return ngayKetThuc;
-    }
-
-    public void setNgayKetThuc(String ngayKetThuc) {
-        this.ngayKetThuc = ngayKetThuc;
     }
 
     public String getGhiChu() {

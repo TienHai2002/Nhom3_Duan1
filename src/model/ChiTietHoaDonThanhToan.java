@@ -4,20 +4,18 @@ public class ChiTietHoaDonThanhToan {
 
     private String maHDChiTiet;
     private String maHD;
-    private String maKM;
     private String maSP;
     private double donGia;
     private int soLuong;
-    private String voucher;
+    private int doiDiem;
 
-    public ChiTietHoaDonThanhToan(String maHDChiTiet, String maHD, String maKM, String maSP, double donGia, int soLuong, String voucher) {
+    public ChiTietHoaDonThanhToan(String maHDChiTiet, String maHD, String maSP, double donGia, int soLuong, int doiDiem) {
         this.maHDChiTiet = maHDChiTiet;
         this.maHD = maHD;
-        this.maKM = maKM;
         this.maSP = maSP;
         this.donGia = donGia;
         this.soLuong = soLuong;
-        this.voucher = voucher;
+        this.doiDiem = doiDiem;
     }
 
     public ChiTietHoaDonThanhToan() {
@@ -37,14 +35,6 @@ public class ChiTietHoaDonThanhToan {
 
     public void setMaHD(String maHD) {
         this.maHD = maHD;
-    }
-
-    public String getMaKM() {
-        return maKM;
-    }
-
-    public void setMaKM(String maKM) {
-        this.maKM = maKM;
     }
 
     public String getMaSP() {
@@ -71,12 +61,12 @@ public class ChiTietHoaDonThanhToan {
         this.soLuong = soLuong;
     }
 
-    public String getVoucher() {
-        return voucher;
+    public int getDoiDiem() {
+        return doiDiem;
     }
 
-    public void setVoucher(String voucher) {
-        this.voucher = voucher;
+    public void setDoiDiem(int doiDiem) {
+        this.doiDiem = doiDiem;
     }
 
 }

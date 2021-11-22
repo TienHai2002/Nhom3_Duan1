@@ -7,16 +7,24 @@ public class SanPham {
     private String tenSP;
     private double donGia;
     private int soLuong;
+    private String maMau;
+    private String size;
+    private String maKM;
+    private String maNCC;
     private String anhSP;
     private String chiTiet;
     private boolean TrangThai;
 
-    public SanPham(String maSP, String maThuongHieu, String tenSP, double donGia, int soLuong, String anhSP, String chiTiet, boolean TrangThai) {
+    public SanPham(String maSP, String maThuongHieu, String tenSP, double donGia, int soLuong, String maMau, String size, String maKM, String maNCC, String anhSP, String chiTiet, boolean TrangThai) {
         this.maSP = maSP;
         this.maThuongHieu = maThuongHieu;
         this.tenSP = tenSP;
         this.donGia = donGia;
         this.soLuong = soLuong;
+        this.maMau = maMau;
+        this.size = size;
+        this.maKM = maKM;
+        this.maNCC = maNCC;
         this.anhSP = anhSP;
         this.chiTiet = chiTiet;
         this.TrangThai = TrangThai;
@@ -63,6 +71,38 @@ public class SanPham {
 
     public void setSoLuong(int soLuong) {
         this.soLuong = soLuong;
+    }
+
+    public String getMaMau() {
+        return maMau;
+    }
+
+    public void setMaMau(String maMau) {
+        this.maMau = maMau;
+    }
+
+    public String getSize() {
+        return size;
+    }
+
+    public void setSize(String size) {
+        this.size = size;
+    }
+
+    public String getMaKM() {
+        return maKM;
+    }
+
+    public void setMaKM(String maKM) {
+        this.maKM = maKM;
+    }
+
+    public String getMaNCC() {
+        return maNCC;
+    }
+
+    public void setMaNCC(String maNCC) {
+        this.maNCC = maNCC;
     }
 
     public String getAnhSP() {
