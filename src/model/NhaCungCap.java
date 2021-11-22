@@ -7,13 +7,15 @@ public class NhaCungCap {
     private String diaChi;
     private String sDT;
     private String Email;
+    private boolean trangThai;
 
-    public NhaCungCap(String maNCC, String tenNCC, String diaChi, String sDT, String Email) {
+    public NhaCungCap(String maNCC, String tenNCC, String diaChi, String sDT, String Email, boolean trangThai) {
         this.maNCC = maNCC;
         this.tenNCC = tenNCC;
         this.diaChi = diaChi;
         this.sDT = sDT;
         this.Email = Email;
+        this.trangThai = trangThai;
     }
 
     public NhaCungCap() {
@@ -57,6 +59,14 @@ public class NhaCungCap {
 
     public void setEmail(String Email) {
         this.Email = Email;
+    }
+
+    public boolean isTrangThai() {
+        return trangThai;
+    }
+
+    public void setTrangThai(boolean trangThai) {
+        this.trangThai = trangThai;
     }
 
 }

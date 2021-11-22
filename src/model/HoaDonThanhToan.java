@@ -2,15 +2,15 @@ package model;
 
 public class HoaDonThanhToan {
 
-    private String maHD;
+    private String maHDThanhToan;
     private String maKH;
     private String maNV;
     private String ngayThanhToan;
     private int diemThuong;
     private String ghiChu;
 
-    public HoaDonThanhToan(String maHD, String maKH, String maNV, String ngayThanhToan, int diemThuong, String ghiChu) {
-        this.maHD = maHD;
+    public HoaDonThanhToan(String maHDThanhToan, String maKH, String maNV, String ngayThanhToan, int diemThuong, String ghiChu) {
+        this.maHDThanhToan = maHDThanhToan;
         this.maKH = maKH;
         this.maNV = maNV;
         this.ngayThanhToan = ngayThanhToan;
@@ -21,12 +21,12 @@ public class HoaDonThanhToan {
     public HoaDonThanhToan() {
     }
 
-    public String getMaHD() {
-        return maHD;
+    public String getMaHDThanhToan() {
+        return maHDThanhToan;
     }
 
-    public void setMaHD(String maHD) {
-        this.maHD = maHD;
+    public void setMaHDThanhToan(String maHDThanhToan) {
+        this.maHDThanhToan = maHDThanhToan;
     }
 
     public String getMaKH() {

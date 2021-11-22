@@ -4,13 +4,13 @@ GO
 USE QuanLiBanGiay
 GO
 
-CREATE TABLE LoaiSanPham(
+CREATE TABLE ThuongHieu(
 MaThuongHieu VARCHAR(10) PRIMARY KEY,
 TenThuongHieu NVARCHAR(20) NOT NULL,
 TrangThai BIT NOT NULL,
 );
 
-INSERT INTO LoaiSanPham(MaThuongHieu, TenThuongHieu,TrangThai) VALUES
+INSERT INTO ThuongHieu(MaThuongHieu, TenThuongHieu,TrangThai) VALUES
 ('TH001', N'Adidas', 1),
 ('TH002', N'Nike', 1),
 ('TH003', N'Dincox', 1),
@@ -33,11 +33,11 @@ MaXacNhan VARCHAR(6) NULL,
 );
 
 INSERT INTO dbo.NhanVien VALUES
-('PH17245', N'Nguyễn Bá Hà', 'baha123', N'Hà Nội', '0325878373', 'hanbph17245@fpt.edu.vn', '20020516', 1, 'baha123.jpg', 1, 1, NULL),
-('PH17417', N'Nguyễn Phú Quang', 'quang123', N'Hà Nội', '0936352884', 'quangnpph17417@fpt.edu.vn', '20021004', 1, 'quang123.jpg', 1, 1, NULL),
-('PH17481', N'Nguyễn Công Trường', 'truong123', N'Hà Nội', '0964853798', 'truongncph17481@fpt.edu.vn', '20020722', 1, 'truong123.jpg', 1, 1, NULL),
-('PH18383', N'Nguyễn Văn Huy', 'vanhuy123', N'Hà Nội', '0338327433', 'huynvph18383@fpt.edu.vn', '20020222', 1, 'vanhuy123.jpg', 1, 1, NULL),
-('PH17446', N'Nguyễn Tiến Hải', 'tienhai123', N'Hà Nội', '0347766383', 'haintph17446@fpt.edu.vn', '20021223', 1, 'tienhai123.jpg', 1, 1, NULL);
+('ph17245', N'Nguyễn Bá Hà', 'baha123', N'Hà Nội', '0325878373', 'hanbph17245@fpt.edu.vn', '20020516', 1, 'baha123.jpg', 1, 1, NULL),
+('ph17417', N'Nguyễn Phú Quang', 'quang123', N'Hà Nội', '0936352884', 'quangnpph17417@fpt.edu.vn', '20021004', 1, 'quang123.jpg', 1, 1, NULL),
+('ph17481', N'Nguyễn Công Trường', 'truong123', N'Hà Nội', '0964853798', 'truongncph17481@fpt.edu.vn', '20020722', 1, 'truong123.jpg', 1, 1, NULL),
+('ph18383', N'Nguyễn Văn Huy', 'vanhuy123', N'Hà Nội', '0338327433', 'huynvph18383@fpt.edu.vn', '20020222', 1, 'vanhuy123.jpg', 1, 1, NULL),
+('ph17446', N'Nguyễn Tiến Hải', 'tienhai123', N'Hà Nội', '0347766383', 'haintph17446@fpt.edu.vn', '20021223', 1, 'tienhai123.jpg', 1, 1, NULL);
 
 CREATE TABLE MauSac(
 MaMau VARCHAR(10) PRIMARY KEY,
@@ -45,9 +45,8 @@ TenMau NVARCHAR(20) NOT NULL,
 );
 
 INSERT INTO dbo.MauSac(MaMau, TenMau) VALUES
-('F3F418', N'Vàng'),
+('FF66FF', N'Hồng'),
 ('0000FF', N'Xanh Nước'),
-('00FF00', N'Xanh Lá'),
 ('FF0000', N'Đỏ'),
 ('000000', N'Đen'),
 ('FFFFFF', N'Trắng');
@@ -67,40 +66,6 @@ INSERT INTO dbo.Size(Size) VALUES
 (43),
 (44);
 
-CREATE TABLE SanPham(
-MaSP VARCHAR(10) PRIMARY KEY,
-MaThuongHieu VARCHAR(10) NOT NULL,
-TenSanPham NVARCHAR(50) NOT NULL,
-GiaBan MONEY NOT NULL,
-SoLuong INT NOT NULL,
-MaMau VARCHAR(10) NOT NULL,
-Size INT NOT NULL,
-AnhSP VARCHAR(30) NOT NULL,
-ChiTiet NVARCHAR(50) NULL,
-TrangThai BIT NOT NULL,
-
-FOREIGN KEY (MaMau) REFERENCES dbo.MauSac(MaMau),
-FOREIGN KEY (Size) REFERENCES dbo.Size(Size),
-FOREIGN KEY (MaThuongHieu) REFERENCES dbo.LoaiSanPham(MaThuongHieu),
-);
-
-INSERT INTO SanPham(MaSP,MaThuongHieu,TenSanPham,GiaBan,SoLuong,AnhSP,ChiTiet,TrangThai) VALUES
-('SP001', 'TH001', N'UltraBoost 21', 5000000, 5, 'sp001.png', NULL,0),
-('SP002', 'TH001', N'Alphabounce', 3000000, 10, 'sp002.png', NULL,0),
-('SP003', 'TH001', N'ZX 1K Boost', 2500000, 10, 'sp003.png', NULL,0),
-('SP004', 'TH002', N'Nike Revolution 5 Nam', 1790000, 15, 'sp004.png', NULL,0),
-('SP005', 'TH002', N'Nike Zoom Fly 3 Nữ', 3690000, 10, 'sp005.png', NULL,0),
-('SP006', 'TH002', N'Nike Air Zoom Structure 24', 3390000, 10, 'sp006.png', NULL,0),
-('SP007', 'TH003', N'E03 Grey', 455000, 20, 'sp007.png', NULL,0),
-('SP008', 'TH003', N'D07 TAN-WHT', 344000, 20, 'sp008.png', NULL,0),
-('SP009', 'TH003', N'D21 KHAKI WASH', 350000, 20, 'sp009.png', NULL,0),
-('SP010', 'TH004', N'Puma Ralph Sampson', 1770000, 10, 'sp010.png', NULL,0),
-('SP011', 'TH004', N'Puma Caracal Suede', 1770000, 10, 'sp011.png', NULL,0),
-('SP012', 'TH004', N'Puma Clyde Stitch', 1990000, 10, 'sp012.png', NULL,0),
-('SP013', 'TH005', N'Vans Caro', 350000, 30, 'sp013.png', NULL,0),
-('SP014', 'TH005', N'Vans Old Skool', 640000, 20, 'sp014.png', NULL,0),
-('SP015', 'TH005', N'Vans Retro Sport', 640000, 20, 'sp015.png', NULL,0);
-
 CREATE TABLE NhaCungCap(
 MaNCC VARCHAR(10) PRIMARY KEY,
 TenNCC NVARCHAR(50) NOT NULL,
@@ -115,12 +80,118 @@ INSERT INTO NhaCungCap (MaNCC,TenNCC,DiaChi,SDT,Email,TrangThai) VALUES
 ('NCC022', N'Công ty giày da Xuân Hồng', N'Nam Định', '0979273458', 'xhong1@gmail.com', 1),
 ('NCC033', N'Công ty giày da Bắc Ninh', N'Bắc Ninh', '0234785985', 'bninh23@gmail.com', 1),
 ('NCC044', N'Công ty giày da Thái Bình', N'Thái Bình', '0934879289', 'tbinh2@gmail.com', 1),
-('NCC055', N'Công ty giày da Lào Cai', N'Lào Cai', '0927781923', 'lcai@gmail.com', 1),
-('NCC066', N'Công ty giày da Phú Thọ', N'Phú Thọ', '0909278111', 'ptho@gmail.com', 1),
-('NCC077', N'Công ty giày da Quang Hà', N'Hà Nội', '0998476791', 'qha@gmail.com', 1),
-('NCC088', N'Công ty giày da Trường Hải', N'Hà Nội', '0901923833', 'trhai@gmail.com', 1),
-('NCC099', N'Công ty giày da Huy Hùng', N'Nam Định', '0902898737', 'hhung@gmail.com', 1),
-('NCC101', N'Công ty giày da Kim Tiến', N'Hà Nam', '0909237123', 'ktien@gmail.com', 1);
+('NCC055', N'Công ty giày da Lào Cai', N'Lào Cai', '0927781923', 'lcai@gmail.com', 1);
+
+CREATE TABLE KhuyenMai(
+MaKM VARCHAR(10) PRIMARY KEY,
+MaNV VARCHAR(10) NOT NULL,
+TenKM NVARCHAR(30) NOT NULL,
+GiaTri VARCHAR(5) NOT NULL,
+NgayTao DATE NULL,
+GhiChu NVARCHAR(50) NULL,
+TrangThai BIT NOT NULL,
+
+FOREIGN KEY (MaNV) REFERENCES dbo.NhanVien(MaNV),
+);
+
+INSERT INTO KhuyenMai (MaKM,MaNV,TenKM,GiaTri,NgayTao,GhiChu,TrangThai) VALUES
+('KM00', 'PH17417', N'Không Khuyến Mãi', '0%', '20201220', NULL, 1),
+('KM10', 'PH17245', N'Khuyến Mãi 10%', '10%', '20201220', NULL, 1),
+('KM20', 'PH18383', N'Khuyến Mãi 20%', '20%', '20201220', NULL, 1),
+('KM30', 'PH17481', N'Khuyến Mãi 30%', '30%', '20201220', NULL, 1),
+('KM40', 'PH17446', N'Khuyến Mãi 40%', '40%', '20201220', NULL, 0),
+('KM50', 'PH17245', N'Khuyến Mãi 50%', '50%', '20201220', NULL, 0),
+('KM60', 'PH17481', N'Khuyến Mãi 60%', '60%', '20201220', NULL, 0),
+('KM70', 'PH18383', N'Khuyến Mãi 70%', '70%', '20201220', NULL, 0),
+('KM80', 'PH17446', N'Khuyến Mãi 80%', '80%', '20201220', NULL, 0),
+('KM90', 'PH18383', N'Khuyến Mãi 90%', '90%', '20201220', NULL, 0);
+
+CREATE TABLE SanPham(
+MaSP VARCHAR(10) PRIMARY KEY,
+MaThuongHieu VARCHAR(10) NOT NULL,
+TenSanPham NVARCHAR(50) NOT NULL,
+GiaBan MONEY NOT NULL,
+SoLuong INT NOT NULL,
+MaMau VARCHAR(10) NOT NULL,
+Size INT NOT NULL,
+MaKM VARCHAR(10) NOT NULL,
+MaNCC VARCHAR(10) NOT NULL,
+AnhSP VARCHAR(30) NOT NULL,
+ChiTiet NVARCHAR(50) NULL,
+TrangThai BIT NOT NULL,
+
+FOREIGN KEY (MaMau) REFERENCES dbo.MauSac(MaMau),
+FOREIGN KEY (Size) REFERENCES dbo.Size(Size),
+FOREIGN KEY (MaKM) REFERENCES dbo.KhuyenMai(MaKM),
+FOREIGN KEY (MaThuongHieu) REFERENCES dbo.ThuongHieu(MaThuongHieu),
+);
+
+INSERT INTO SanPham(MaSP,MaThuongHieu,TenSanPham,GiaBan,SoLuong,MaMau,Size,MaKM,MaNCC,AnhSP,ChiTiet,TrangThai) VALUES
+('SP001TR40', 'TH001', N'UltraBoost 21', 5000000, 1, 'FFFFFF', 40, 'KM10', 'NCC011', 'sp001trang.png', NULL, 1),
+('SP001TR41', 'TH001', N'UltraBoost 21', 5000000, 2, 'FFFFFF', 41, 'KM10', 'NCC011', 'sp001trang.png', NULL, 1),
+('SP001TR42', 'TH001', N'UltraBoost 21', 5000000, 1, 'FFFFFF', 42, 'KM10', 'NCC011', 'sp001trang.png', NULL, 1),
+('SP001DEN40', 'TH001', N'UltraBoost 21', 5000000, 1, '000000', 40, 'KM10', 'NCC011', 'sp001den.png', NULL, 1),
+('SP001DEN41', 'TH001', N'UltraBoost 21', 5000000, 1, '000000', 41, 'KM10', 'NCC011', 'sp001den.png', NULL, 1),
+('SP001DEN42', 'TH001', N'UltraBoost 21', 5000000, 1, '000000', 42, 'KM10', 'NCC011', 'sp001den.png', NULL, 1),
+('SP002DEN36', 'TH001', N'Alphabounce', 3000000, 1, '000000', 36, 'KM20', 'NCC055', 'sp002den.png', NULL, 1),
+('SP002DEN37', 'TH001', N'Alphabounce', 3000000, 1, '000000', 37, 'KM20', 'NCC055', 'sp002den.png', NULL, 1),
+('SP002DEN38', 'TH001', N'Alphabounce', 3000000, 1, '000000', 38, 'KM20', 'NCC055', 'sp002den.png', NULL, 1),
+('SP002DEN39', 'TH001', N'Alphabounce', 3000000, 2, '000000', 39, 'KM20', 'NCC055', 'sp002den.png', NULL, 1),
+('SP002TR39', 'TH001', N'Alphabounce', 3000000, 2, 'FFFFFF', 39, 'KM20', 'NCC055', 'sp002trang.png', NULL, 1),
+('SP002TR40', 'TH001', N'Alphabounce', 3000000, 2, 'FFFFFF', 40, 'KM20', 'NCC055', 'sp002trang.png', NULL, 1),
+('SP002TR41', 'TH001', N'Alphabounce', 3000000, 2, 'FFFFFF', 41, 'KM20', 'NCC055', 'sp002trang.png', NULL, 1),
+('SP003DEN41', 'TH001', N'ZX 1K Boost', 2500000, 2, '000000', 41, 'KM10', 'NCC022', 'sp003den.png', NULL, 1),
+('SP003DEN42', 'TH001', N'ZX 1K Boost', 2500000, 3, '000000', 42, 'KM10', 'NCC022', 'sp003den.png', NULL, 1),
+('SP003DEN43', 'TH001', N'ZX 1K Boost', 2500000, 1, '000000', 43, 'KM10', 'NCC022', 'sp003den.png', NULL, 1),
+('SP003DEN44', 'TH001', N'ZX 1K Boost', 2500000, 1, '000000', 44, 'KM10', 'NCC022', 'sp003den.png', NULL, 1),
+('SP003TR41', 'TH001', N'ZX 1K Boost', 2500000, 3, 'FFFFFF', 41, 'KM10', 'NCC022', 'sp003trang.png', NULL, 1),
+('SP003TR42', 'TH001', N'ZX 1K Boost', 2500000, 2, 'FFFFFF', 42, 'KM10', 'NCC022', 'sp003trang.png', NULL, 1),
+('SP003TR43', 'TH001', N'ZX 1K Boost', 2500000, 2, 'FFFFFF', 43, 'KM10', 'NCC022', 'sp003trang.png', NULL, 1),
+('SP004XA40', 'TH002', N'Nike Revolution 5 Nam', 1790000, 5, '0000FF', 40, 'KM30', 'NCC033', 'sp004xanh.png', NULL, 1),
+('SP004XA41', 'TH002', N'Nike Revolution 5 Nam', 1790000, 4, '0000FF', 41, 'KM30', 'NCC033', 'sp004xanh.png', NULL, 1),
+('SP004XA42', 'TH002', N'Nike Revolution 5 Nam', 1790000, 6, '0000FF', 42, 'KM30', 'NCC033', 'sp004xanh.png', NULL, 1),
+('SP004XA43', 'TH002', N'Nike Revolution 5 Nam', 1790000, 3, '0000FF', 43, 'KM30', 'NCC033', 'sp004xanh.png', NULL, 1),
+('SP004XA44', 'TH002', N'Nike Revolution 5 Nam', 1790000, 1, '0000FF', 44, 'KM30', 'NCC033', 'sp004xanh.png', NULL, 1),
+('SP004DEN39', 'TH002', N'Nike Revolution 5 Nam', 1790000, 5, '000000', 39, 'KM30', 'NCC033', 'sp004den.png', NULL, 1),
+('SP004DEN40', 'TH002', N'Nike Revolution 5 Nam', 1790000, 4, '000000', 40, 'KM30', 'NCC033', 'sp004den.png', NULL, 1),
+('SP004DEN41', 'TH002', N'Nike Revolution 5 Nam', 1790000, 3, '000000', 41, 'KM30', 'NCC033', 'sp004den.png', NULL, 1),
+('SP005HO36', 'TH002', N'Nike Zoom Fly 3 Nữ', 3690000, 4, 'FF66FF', 36, 'KM20', 'NCC022', 'sp005hong.png', NULL, 1),
+('SP005HO37', 'TH002', N'Nike Zoom Fly 3 Nữ', 3690000, 5, 'FF66FF', 37, 'KM20', 'NCC022', 'sp005hong.png', NULL, 1),
+('SP005HO38', 'TH002', N'Nike Zoom Fly 3 Nữ', 3690000, 5, 'FF66FF', 38, 'KM20', 'NCC022', 'sp005hong.png', NULL, 1),
+('SP005HO39', 'TH002', N'Nike Zoom Fly 3 Nữ', 3690000, 5, 'FF66FF', 39, 'KM20', 'NCC022', 'sp005hong.png', NULL, 1),
+('SP005TR37', 'TH002', N'Nike Zoom Fly 3 Nữ', 3690000, 4, 'FFFFFF', 37, 'KM20', 'NCC022', 'sp005trang.png', NULL, 1),
+('SP005TR38', 'TH002', N'Nike Zoom Fly 3 Nữ', 3690000, 5, 'FFFFFF', 38, 'KM20', 'NCC022', 'sp005trang.png', NULL, 1),
+('SP005TR39', 'TH002', N'Nike Zoom Fly 3 Nữ', 3690000, 5, 'FFFFFF', 39, 'KM20', 'NCC022', 'sp005trang.png', NULL, 1),
+('SP005DEN37', 'TH002', N'Nike Zoom Fly 3 Nữ', 3690000, 5, '000000', 37, 'KM20', 'NCC022', 'sp005den.png', NULL, 1),
+('SP005DEN38', 'TH002', N'Nike Zoom Fly 3 Nữ', 3690000, 5, '000000', 38, 'KM20', 'NCC022', 'sp005den.png', NULL, 1),
+('SP005DEN39', 'TH002', N'Nike Zoom Fly 3 Nữ', 3690000, 5, '000000', 39, 'KM20', 'NCC022', 'sp005trang.png', NULL, 1),
+('SP006TR37', 'TH003', N'D21 KHAKI WASH', 282000, 10, 'FFFFFF', 37, 'KM00', 'NCC011', 'sp006trang.png', NULL, 1),
+('SP006TR38', 'TH003', N'D21 KHAKI WASH', 282000, 9, 'FFFFFF', 38, 'KM00', 'NCC011', 'sp006trang.png', NULL, 1),
+('SP006TR39', 'TH003', N'D21 KHAKI WASH', 282000, 10, 'FFFFFF', 39, 'KM00', 'NCC011', 'sp006trang.png', NULL, 1),
+('SP006TR40', 'TH003', N'D21 KHAKI WASH', 282000, 10, 'FFFFFF', 40, 'KM00', 'NCC011', 'sp006trang.png', NULL, 1),
+('SP006DEN38', 'TH003', N'D21 KHAKI WASH', 282000, 8, '000000', 38, 'KM00', 'NCC011', 'sp006den.png', NULL, 1),
+('SP006DEN39', 'TH003', N'D21 KHAKI WASH', 282000, 8, '000000', 39, 'KM00', 'NCC011', 'sp006den.png', NULL, 1),
+('SP006DEN40', 'TH003', N'D21 KHAKI WASH', 282000, 10, '000000', 40, 'KM00', 'NCC011', 'sp006den.png', NULL, 1),
+('SP006XA39', 'TH003', N'D21 KHAKI WASH', 282000, 10, '0000FF', 39, 'KM00', 'NCC011', 'sp006xanh.png', NULL, 1),
+('SP006XA40', 'TH003', N'D21 KHAKI WASH', 282000, 7, '0000FF', 40, 'KM00', 'NCC011', 'sp006xanh.png', NULL, 1),
+('SP006XA41', 'TH003', N'D21 KHAKI WASH', 282000, 10, '0000FF', 41, 'KM00', 'NCC011', 'sp006xanh.png', NULL, 1),
+('SP007TR40', 'TH004', N'Puma Ralph Sampson', 1770000, 3, 'FFFFFF', 40, 'KM10', 'NCC022', 'sp007trang.png', NULL, 1),
+('SP007TR41', 'TH004', N'Puma Ralph Sampson', 1770000, 4, 'FFFFFF', 41, 'KM10', 'NCC022', 'sp007trang.png', NULL, 1),
+('SP007TR42', 'TH004', N'Puma Ralph Sampson', 1770000, 3, 'FFFFFF', 42, 'KM10', 'NCC022', 'sp007trang.png', NULL, 1),
+('SP007TR43', 'TH004', N'Puma Ralph Sampson', 1770000, 3, 'FFFFFF', 43, 'KM10', 'NCC022', 'sp007trang.png', NULL, 1),
+('SP007DEN39', 'TH004', N'Puma Ralph Sampson', 1770000, 5, '000000', 39, 'KM10', 'NCC022', 'sp007den.png', NULL, 1),
+('SP007DEN40', 'TH004', N'Puma Ralph Sampson', 1770000, 4, '000000', 40, 'KM10', 'NCC022', 'sp007den.png', NULL, 1),
+('SP007DEN41', 'TH004', N'Puma Ralph Sampson', 1770000, 4, '000000', 41, 'KM10', 'NCC022', 'sp007den.png', NULL, 1),
+('SP007DEN42', 'TH004', N'Puma Ralph Sampson', 1770000, 3, '000000', 42, 'KM10', 'NCC022', 'sp007den.png', NULL, 1),
+('SP007XA40', 'TH004', N'Puma Ralph Sampson', 1770000, 4, '0000FF', 40, 'KM10', 'NCC022', 'sp007xanh.png', NULL, 1),
+('SP007XA41', 'TH004', N'Puma Ralph Sampson', 1770000, 5, '0000FF', 41, 'KM10', 'NCC022', 'sp007xanh.png', NULL, 1),
+('SP007XA42', 'TH004', N'Puma Ralph Sampson', 1770000, 4, '0000FF', 42, 'KM10', 'NCC022', 'sp007xanh.png', NULL, 1),
+('SP008TR40', 'TH004', N'Puma Clyde Stitch', 1990000, 4,'FFFFFF', 40, 'KM10', 'NCC044', 'sp008trang.png', NULL, 1),
+('SP008TR41', 'TH004', N'Puma Clyde Stitch', 1990000, 5,'FFFFFF', 41, 'KM10', 'NCC044', 'sp008trang.png', NULL, 1),
+('SP008TR42', 'TH004', N'Puma Clyde Stitch', 1990000, 4,'FFFFFF', 42, 'KM10', 'NCC044', 'sp008trang.png', NULL, 1),
+('SP008DEN41', 'TH004', N'Puma Clyde Stitch', 1990000, 3,'000000', 41, 'KM10', 'NCC044', 'sp008den.png', NULL, 1),
+('SP008DEN42', 'TH004', N'Puma Clyde Stitch', 1990000, 4,'000000', 42, 'KM10', 'NCC044', 'sp008den.png', NULL, 1),
+('SP008DEN43', 'TH004', N'Puma Clyde Stitch', 1990000, 4,'000000', 43, 'KM10', 'NCC044', 'sp008den.png', NULL, 1);
 
 CREATE TABLE KhachHang(
 MaKH VARCHAR(10) PRIMARY KEY,
@@ -137,41 +208,21 @@ FOREIGN KEY (MaNV) REFERENCES dbo.NhanVien(MaNV),
 );
 
 INSERT INTO KhachHang(MaKH,TenKH,SDT,Email,NgaySinh,GioiTinh,TichDiem,MaNV,TrangThai) VALUES
-('KH001', N'Nguyễn Xuân Diệu', '0999888767', 'xdieu111@gmail.com', '19900228', 0, 300, 'PH17245', 1),
-('KH002', N'Trần Quang Minh', '0990234545', 'quangminh12@gmail.com', '19950321', 1, 500, 'PH17245', 0),
-('KH003', N'Định Thị Quỳnh', '0998563258', 'quynhdinh26@gmail.com', '19920522', 0, 400, 'PH17245', 0),
-('KH004', N'Đặng Quang Đoàn', '0925398765', 'dangdoan22@gmail.com', '19930128', 1, 200, 'PH17245', 0),
-('KH005', N'Ngô Hà Duy', '0909486254', 'haduy22@gmail.com', '19900220', 1, 300, 'PH17245', 0),
-('KH006', N'Bùi Thị Duyên', '0902455322', 'duyen09@gmail.com', '19911109', 0, 1100, 'PH17245', 0),
-('KH007', N'Đoàn Văn Trung', '0905683454', 'trung12@gmail.com', '19950810', 1, 900, 'PH17245', 0),
-('KH008', N'Ngô Thùy Linh', '0909737175', 'linh08@gmail.com', '20000215', 0, 300, 'PH17245', 0),
-('KH009', N'Nguyễn Nam Thành', '0903668233', 'thanh001@gmail.com', '19990209', 1, 100, 'PH17245', 0),
-('KH010', N'Đinh Văn Tùng', '0992863432', 'tung88@gmail.com', '19980909', 1, 600, 'PH17245', 0);
-
-CREATE TABLE KhuyenMai(
-MaKM VARCHAR(10) PRIMARY KEY,
-MaNV VARCHAR(10) NOT NULL,
-TenKM NVARCHAR(30) NOT NULL,
-GiaTri VARCHAR(5) NOT NULL,
-NgayTao DATE NOT NULL,
-NgayBatDau DATE NOT NULL,
-NgayKetThuc DATE NOT NULL,
-GhiChu NVARCHAR(50) NULL,
-TrangThai BIT NOT NULL,
-
-FOREIGN KEY (MaNV) REFERENCES dbo.NhanVien(MaNV),
-);
-
-INSERT INTO KhuyenMai (MaKM,MaNV,TenKM,GiaTri,NgayTao,NgayBatDau,NgayKetThuc,GhiChu,TrangThai) VALUES
-('KM001', 'PH17245', N'Mừng Tết Dương Lịch', '10%', '20202812', '20210101', '20210102', NULL, 0),
-('KM002', 'PH18383', N'Khai Xuân 2021', '30%', '20210207', '20210209', '20210212', NULL, 0),
-('KM003', 'PH17481', N'Ngày Lễ Tình Nhân', '10%', '20210213', '20210214', '20210215', NULL, 0),
-('KM004', 'PH17446', N'Quốc Tế Phụ Nữ', '20%', '20210307', '20210308', '20210309', NULL, 0),
-('KM005', 'PH17245', N'Giỗ Tổ Hùng Vương', '10%', '20210419', '20210421','20210422', NULL, 0),
-('KM006', 'PH17481', N'Hè Về Rực Rỡ', '20%', '20210518', '20210519', '20210525', NULL, 0),
-('KM007', 'PH18383', N'Mừng Thiếu Nhi', '20%', '20210529', '20210601', '20210603', NULL, 0),
-('KM008', 'PH17446', N'Tết Trung Thu', '10%', '20210919', '20210921', '20210923', NULL, 0),
-('KM009', 'PH18383', N'Nhà Giáo Việt Nam', '10%', '20211118', '20211120', '20211121', NULL, 1);
+('KH001', N'Nguyễn Xuân Diệu', '0999888767', 'xdieu111@gmail.com', '19900228', 0, 300, 'PH18383', 1),
+('KH002', N'Trần Quang Minh', '0990234545', 'quangminh12@gmail.com', '19950321', 1, 500, 'PH18383', 1),
+('KH003', N'Định Thị Quỳnh', '0998563258', 'quynhdinh26@gmail.com', '19920522', 0, 400, 'PH18383', 1),
+('KH004', N'Đặng Quang Đoàn', '0925398765', 'dangdoan22@gmail.com', '19930128', 1, 200, 'PH17417', 1),
+('KH005', N'Ngô Hà Duy', '0909486254', 'haduy22@gmail.com', '19900220', 1, 300, 'PH17417', 1),
+('KH006', N'Bùi Thị Duyên', '0902455322', 'duyen09@gmail.com', '19911109', 0, 1100, 'PH17417', 1),
+('KH007', N'Đoàn Văn Trung', '0905683454', 'trung12@gmail.com', '19950810', 1, 900, 'PH17245', 1),
+('KH008', N'Ngô Thùy Linh', '0909737175', 'linh08@gmail.com', '20000215', 0, 300, 'PH17245', 1),
+('KH009', N'Nguyễn Nam Thành', '0903668233', 'thanh001@gmail.com', '19990209', 1, 100, 'PH17245', 1),
+('KH010', N'Đinh Văn Tùng', '0992863432', 'tung88@gmail.com', '19980909', 1, 600, 'PH17481', 1),
+('KH011', N'Đoàn Phú Thái', '0972863432', 'thai321@gmail.com', '20021009', 1, 700, 'PH17481', 1),
+('KH012', N'Trịnh Tiến Lực', '0962862432', 'luc307@gmail.com', '20020209', 1, 400, 'PH17481', 1),
+('KH013', N'Nguyễn Quang Toan', '0777348002', 'toan123@gmail.com', '20021103', 1, 500, 'PH17446', 1),
+('KH014', N'Lý Thị Nga', '0981287652', 'lynnga123@gmail.com', '20020826', 0, 200, 'PH17446', 1),
+('KH015', N'Nguyễn Viết Thiệu', '0902863432', 'thieu28@gmail.com', '20021030', 1, 400, 'PH17446', 1);
 
 CREATE TABLE HoaDonThanhToan(
 MaHDThanhToan VARCHAR(10) PRIMARY KEY,
@@ -185,7 +236,7 @@ FOREIGN KEY (MaKhachHang) REFERENCES dbo.KhachHang(MaKH),
 FOREIGN KEY (MaNhanVien) REFERENCES dbo.NhanVien(MaNV),
 );
 
-insert into HoaDonThanhToan (MaHDThanhToan,MaKhachHang,MaNhanVien,NgayThanhToan,DiemThuong,GhiChu) values
+INSERT INTO dbo.HoaDonThanhToan (MaHDThanhToan,MaKhachHang,MaNhanVien,NgayThanhToan,DiemThuong,GhiChu) VALUES
 ('MHD001', 'KH001', 'PH18383', '20211115', 100, NULL),
 ('MHD002', 'KH002', 'PH18383', '20211115', 100, NULL),
 ('MHD003', 'KH003', 'PH18383', '20211115', 100, NULL),
@@ -205,22 +256,30 @@ insert into HoaDonThanhToan (MaHDThanhToan,MaKhachHang,MaNhanVien,NgayThanhToan,
 CREATE TABLE ChiTietHoaDonThanhToan(
 MaHDChiTiet VARCHAR(10) PRIMARY KEY,
 MaHDThanhToan VARCHAR(10) NOT NULL,
-MaKhuyenMai VARCHAR(10) NOT NULL,
 MaSanPham VARCHAR(10) NOT NULL,
 DonGia MONEY NOT NULL,
 SoLuong INT NOT NULL,
+DoiDiem INT NOT NULL,
 
 FOREIGN KEY (MaHDThanhToan) REFERENCES dbo.HoaDonThanhToan(MaHDThanhToan),
-FOREIGN KEY (MaKhuyenMai) REFERENCES dbo.KhuyenMai(MaKM),
 FOREIGN KEY (MaSanPham) REFERENCES dbo.SanPham(MaSP),
 );
-insert into ChiTietHoaDonThanhToan(MaHDChiTiet,MaHDThanhToan,MaKhuyenMai,MaSanPham,DonGia,SoLuong) values
-
-('HDCT01', 'MHD01', 'KM02', 'SP001', 200000, 2),
-('HDCT02', 'MHD02', 'KM01', 'SP002', 500000, 1),
-('HDCT03', 'MHD03', 'KM06', 'SP003', 400000, 1),
-('HDCT04', 'MHD04', 'KM08', 'SP009', 150000, 1),
-('HDCT05', 'MHD05', 'KM05', 'SP005', 600000, 2);
+INSERT INTO dbo.ChiTietHoaDonThanhToan (MaHDChiTiet,MaHDThanhToan,MaSanPham,DonGia,SoLuong,DoiDiem) VALUES
+('HDCT001', 'MHD001', 'SP001TR40', 4500000, 1, 0),
+('HDCT002', 'MHD002', 'SP002DEN38', 2400000, 1, 0),
+('HDCT003', 'MHD003', 'SP003DEN41', 2250000, 1, 0),
+('HDCT004', 'MHD004', 'SP006TR40', 282000, 1, 0),
+('HDCT005', 'MHD005', 'SP007DEN41', 1593000, 1, 0),
+('HDCT006', 'MHD006', 'SP004XA44', 1253000, 1, 0),
+('HDCT007', 'MHD007', 'SP001TR42', 4500000, 1, 0),
+('HDCT008', 'MHD008', 'SP005HO38', 2952000, 1, 0),
+('HDCT009', 'MHD009', 'SP002DEN39', 2400000, 1, 0),
+('HDCT010', 'MHD010', 'SP004XA41', 1253000, 1, 0),
+('HDCT011', 'MHD011', 'SP002DEN37', 2400000, 1, 0),
+('HDCT012', 'MHD012', 'SP001DEN41', 4500000, 1, 0),
+('HDCT013', 'MHD013', 'SP006XA40', 282000, 1, 0),
+('HDCT014', 'MHD014', 'SP007DEN42', 1593000, 1, 0),
+('HDCT015', 'MHD015', 'SP003DEN43', 2250000, 1, 0);
 CREATE TABLE HoaDonNhapHang(
 MaHDNhapHang VARCHAR(10) PRIMARY KEY,
 MaNV VARCHAR(10) NOT NULL,
@@ -231,12 +290,14 @@ GhiChu NVARCHAR(50) NULL,
 FOREIGN KEY (MaNV) REFERENCES dbo.NhanVien(MaNV),
 FOREIGN KEY (MaNCC) REFERENCES dbo.NhaCungCap(MaNCC),
 );
-insert into HoaDonNhapHang (MaHDNhapHang,MaNV,MaNCC,NgayNhapHang,GhiChu) values
-('MHDNH001', 'PH18383', 'NCC011', '20211010', NULL),
-('MHDNH002', 'PH17245', 'NCC055', '20210910', NULL),
-('MHDNH003', 'PH17417', 'NCC077', '20210815', NULL),
-('MHDNH004', 'PH17481', 'NCC022', '20211022', NULL),
-('MHDNH005', 'PH17446', 'NCC099', '20210902', NULL);
+
+INSERT INTO HoaDonNhapHang (MaHDNhapHang,MaNV,MaNCC,NgayNhapHang,GhiChu) VALUES
+('MHDNH001', 'PH18383', 'NCC011', '20210810', NULL),
+('MHDNH002', 'PH17245', 'NCC022', '20210818', NULL),
+('MHDNH003', 'PH17417', 'NCC022', '20210910', NULL),
+('MHDNH004', 'PH17481', 'NCC055', '20210928', NULL),
+('MHDNH005', 'PH17446', 'NCC044', '20211002', NULL),
+('MHDNH006', 'PH17417', 'NCC033', '20211022', NULL);
 
 CREATE TABLE ChiTietHoaDonNhapHang(
 MaHDNhapHang VARCHAR(10) NOT NULL,
@@ -244,12 +305,75 @@ MaSP VARCHAR(10) NOT NULL,
 GiaNhap MONEY NOT NULL,
 SoLuong INT NOT NULL,
 
+FOREIGN KEY (MaHDNhapHang) REFERENCES dbo.HoaDonNhapHang(MaHDNhapHang),
+FOREIGN KEY (MaSP) REFERENCES dbo.SanPham(MaSP),
 PRIMARY KEY (MaHDNhapHang, MaSP),
 );
-insert into ChiTietHoaDonNhapHang(MaHDNhapHang,MaSP,GiaNhap,SoLuong) values
-('MHDNH01','SP01',500000,20),
-('MHDNH02','SP05',400000,20),
-('MHDNH03','SP07',300000,20),
-('MHDNH04','SP02',450000,20),
-('MHDNH05','SP09',700000,10);
+
+INSERT INTO ChiTietHoaDonNhapHang(MaHDNhapHang,MaSP,GiaNhap,SoLuong) VALUES
+('MHDNH001', 'SP001TR40', 3500000, 2),
+('MHDNH001', 'SP001TR41', 3500000, 2),
+('MHDNH001', 'SP001TR42', 3500000, 2),
+('MHDNH001', 'SP001DEN40', 3500000, 1),
+('MHDNH001', 'SP001DEN41', 3500000, 2),
+('MHDNH001', 'SP001DEN42', 3500000, 1),
+('MHDNH001', 'SP006DEN38', 150000, 8),
+('MHDNH001', 'SP006DEN39', 150000, 8),
+('MHDNH001', 'SP006DEN40', 150000, 10),
+('MHDNH001', 'SP006TR37', 150000, 10),
+('MHDNH001', 'SP006TR38', 150000, 9),
+('MHDNH001', 'SP006TR39', 150000, 10),
+('MHDNH001', 'SP006TR40', 150000, 11),
+('MHDNH001', 'SP006XA39', 150000, 10),
+('MHDNH001', 'SP006XA40', 150000, 8),
+('MHDNH001', 'SP006XA41', 150000, 10),
+('MHDNH002', 'SP003DEN41', 1500000, 3),
+('MHDNH002', 'SP003DEN42', 1500000, 3),
+('MHDNH002', 'SP003DEN43', 1500000, 2),
+('MHDNH002', 'SP003DEN44', 1500000, 1),
+('MHDNH002', 'SP003TR41', 1500000, 3),
+('MHDNH002', 'SP003TR42', 1500000, 2),
+('MHDNH002', 'SP003TR43', 1500000, 2),
+('MHDNH002', 'SP005DEN37', 2000000, 5),
+('MHDNH002', 'SP005DEN38', 2000000, 5),
+('MHDNH002', 'SP005DEN39', 2000000, 5),
+('MHDNH002', 'SP005HO36', 2000000, 4),
+('MHDNH002', 'SP005HO37', 2000000, 5),
+('MHDNH002', 'SP005HO38', 2000000, 6),
+('MHDNH002', 'SP005HO39', 2000000, 5),
+('MHDNH002', 'SP005TR37', 2000000, 4),
+('MHDNH002', 'SP005TR38', 2000000, 5),
+('MHDNH002', 'SP005TR39', 2000000, 5),
+('MHDNH003', 'SP007DEN39', 1200000, 5),
+('MHDNH003', 'SP007DEN40', 1200000, 4),
+('MHDNH003', 'SP007DEN41', 1200000, 5),
+('MHDNH003', 'SP007DEN42', 1200000, 4),
+('MHDNH003', 'SP007TR40', 1200000, 3),
+('MHDNH003', 'SP007TR41', 1200000, 4),
+('MHDNH003', 'SP007TR42', 1200000, 3),
+('MHDNH003', 'SP007TR43', 1200000, 3),
+('MHDNH003', 'SP007XA40', 1200000, 4),
+('MHDNH003', 'SP007XA41', 1200000, 5),
+('MHDNH003', 'SP007XA42', 1200000, 4),
+('MHDNH004', 'SP002DEN36', 2000000, 1),
+('MHDNH004', 'SP002DEN37', 2000000, 2),
+('MHDNH004', 'SP002DEN38', 2000000, 2),
+('MHDNH004', 'SP002DEN39', 2000000, 3),
+('MHDNH004', 'SP002TR39', 2000000, 2),
+('MHDNH004', 'SP002TR40', 2000000, 2),
+('MHDNH004', 'SP002TR41', 2000000, 2),
+('MHDNH005', 'SP008DEN41', 1200000, 3),
+('MHDNH005', 'SP008DEN42', 1200000, 4),
+('MHDNH005', 'SP008DEN43', 1200000, 4),
+('MHDNH005', 'SP008TR40', 1200000, 4),
+('MHDNH005', 'SP008TR41', 1200000, 5),
+('MHDNH005', 'SP008TR42', 1200000, 4),
+('MHDNH006', 'SP004DEN39', 1000000, 5),
+('MHDNH006', 'SP004DEN40', 1000000, 3),
+('MHDNH006', 'SP004DEN41', 1000000, 4),
+('MHDNH006', 'SP004XA40', 1000000, 5),
+('MHDNH006', 'SP004XA41', 1000000, 5),
+('MHDNH006', 'SP004XA42', 1000000, 6),
+('MHDNH006', 'SP004XA43', 1000000, 3),
+('MHDNH006', 'SP004XA44', 1000000, 2);
 
