@@ -184,7 +184,7 @@ public class ShoesSysJFrame extends javax.swing.JFrame {
         jToolBar1.add(btnThongKe);
 
         btnLSGD.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        btnLSGD.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/lsgd.png"))); // NOI18N
+        btnLSGD.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/lsgd.png"))); // NOI18N
         btnLSGD.setText("Lịch Sử Giao Dịch");
         btnLSGD.setFocusable(false);
         btnLSGD.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -216,7 +216,7 @@ public class ShoesSysJFrame extends javax.swing.JFrame {
         pnNen.setPreferredSize(new java.awt.Dimension(0, 532));
 
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/banner.png"))); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/banner.png"))); // NOI18N
 
         javax.swing.GroupLayout pnNenLayout = new javax.swing.GroupLayout(pnNen);
         pnNen.setLayout(pnNenLayout);
@@ -241,7 +241,7 @@ public class ShoesSysJFrame extends javax.swing.JFrame {
         lblDongHo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/Alarm.png"))); // NOI18N
         lblDongHo.setText("00:00:00 PM");
 
-        lblExit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/out.png"))); // NOI18N
+        lblExit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/out.png"))); // NOI18N
         lblExit.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 lblExitMouseClicked(evt);
@@ -335,7 +335,7 @@ public class ShoesSysJFrame extends javax.swing.JFrame {
         mnuThietLap.setToolTipText("-13382401");
         mnuThietLap.setPreferredSize(new java.awt.Dimension(100, 24));
 
-        mnuChuDe.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/draw.png"))); // NOI18N
+        mnuChuDe.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/draw.png"))); // NOI18N
         mnuChuDe.setText("Chủ đề");
         mnuChuDe.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

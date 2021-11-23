@@ -215,7 +215,7 @@ public class QuenMatKhauJFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_btnGuiMaActionPerformed
 
     private void lblChuaCoMaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblChuaCoMaMouseClicked
-        if (MsgBox.confirm(this, "Bạn chắn chắn muốn nhận lại mã ?")) {
+        if (MsgBoxHelper.confirm(this, "Bạn chắn chắn muốn nhận lại mã ?")) {
             ChuaCoMa();
         }
     }//GEN-LAST:event_lblChuaCoMaMouseClicked

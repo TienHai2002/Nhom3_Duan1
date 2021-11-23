@@ -18,8 +18,8 @@ public class DangNhapJDialog extends javax.swing.JDialog {
     public Preferences pref = Preferences.userRoot().node("Remember");
     ImageIcon poster = new ImageIcon("src/icon/poster.gif");
     ImageIcon logo = new ImageIcon("src/icon/Logo startup.png");
-    ImageIcon show = new ImageIcon("src/img/show.png");
-    ImageIcon unshow = new ImageIcon("src/img/unshow.png");
+    ImageIcon show = new ImageIcon("src/icon/show.png");
+    ImageIcon unshow = new ImageIcon("src/icon/unshow.png");
     NhanVienDAO dao = new NhanVienDAO();
     
     public DangNhapJDialog(java.awt.Frame parent, boolean modal) {
