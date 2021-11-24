@@ -12,6 +12,7 @@ import java.awt.Color;
 import java.awt.Image;
 import java.awt.image.BufferedImage;
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.List;
 import javax.imageio.ImageIO;
@@ -19,6 +20,12 @@ import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumnModel;
+import model.KhachHang;
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.CellType;
+import org.apache.poi.xssf.usermodel.XSSFRow;
+import org.apache.poi.xssf.usermodel.XSSFSheet;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 public class NhanVienJInternalFrame extends javax.swing.JInternalFrame {
 
@@ -544,7 +551,86 @@ public class NhanVienJInternalFrame extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_lblHinhAnhMouseClicked
 
     private void btnXuatExcelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnXuatExcelMouseClicked
-        
+        XSSFWorkbook workbook = new XSSFWorkbook();
+        XSSFSheet sheet = workbook.createSheet("Nhân viên");
+
+        XSSFRow row = null;
+        Cell cell = null;
+
+        row = sheet.createRow((short) 2);
+        row.setHeight((short) 500);
+        cell = row.createCell(0, CellType.STRING);
+        cell.setCellValue("STT");
+        cell = row.createCell(1, CellType.STRING);
+        cell.setCellValue("Mã nhân viên");
+        cell = row.createCell(2, CellType.STRING);
+        cell.setCellValue("Tên nhân viên");
+        cell = row.createCell(3, CellType.STRING);
+        cell.setCellValue("Địa chỉ");
+        cell = row.createCell(4, CellType.STRING);
+        cell.setCellValue("SĐT");
+        cell = row.createCell(5, CellType.STRING);
+        cell.setCellValue("Email");
+        cell = row.createCell(6, CellType.STRING);
+        cell.setCellValue("Ngày sinh");
+        cell = row.createCell(7, CellType.STRING);
+        cell.setCellValue("Giới tính");
+        cell = row.createCell(8, CellType.STRING);
+        cell.setCellValue("Ảnh");
+        cell = row.createCell(9, CellType.STRING);
+        cell.setCellValue("Trạng thái");
+        cell = row.createCell(10, CellType.STRING);
+        cell.setCellValue("Vai trò");
+//        List<nhanVien> listItem = dao.select();
+        if (list != null) {
+            FileOutputStream fis = null;
+            try {
+                int s = list.size();
+                for (int i = 0; i < s; i++) {
+                    NhanVien nv1 = list.get(i);
+                    row = sheet.createRow((short) 4 + i);
+                    cell = row.createCell(0, CellType.NUMERIC);
+                    cell.setCellValue(i + 1);
+
+                    cell = row.createCell(1, CellType.STRING);
+                    cell.setCellValue(nv1.getMaNV());
+
+                    cell = row.createCell(2, CellType.STRING);
+                    cell.setCellValue(nv1.getTenNV());
+
+                    cell = row.createCell(3, CellType.STRING);
+                    cell.setCellValue(nv1.getDiaChi());
+
+                    cell = row.createCell(4, CellType.STRING);
+                    cell.setCellValue(nv1.getsDT());
+
+                    cell = row.createCell(5, CellType.STRING);
+                    cell.setCellValue(nv1.getEmail());
+
+                    cell = row.createCell(6, CellType.STRING);
+                    cell.setCellValue(nv1.getNgaySinh());
+
+                    cell = row.createCell(7, CellType.STRING);
+                    cell.setCellValue(nv1.isGioiTinh());
+
+                    cell = row.createCell(8, CellType.STRING);
+                    cell.setCellValue(nv1.getAnhNV());
+
+                    cell = row.createCell(9, CellType.STRING);
+                    cell.setCellValue(nv1.isTrangThai());
+
+                    cell = row.createCell(10, CellType.STRING);
+                    cell.setCellValue(nv1.isVaiTro());
+                }
+                //save file
+                File f = new File("src/nhanvien.xlsx");
+                fis = new FileOutputStream(f);
+                workbook.write(fis);
+                fis.close();
+            } catch (Exception ex) {
+                ex.printStackTrace();
+            }
+        }
     }//GEN-LAST:event_btnXuatExcelMouseClicked
 
 
@@ -834,11 +920,8 @@ public class NhanVienJInternalFrame extends javax.swing.JInternalFrame {
     }
 
 //    void chonAnh() {
-
 //        JFileChooser jfc = new JFileChooser("\\src\\AnhNV");
-
 //        JFileChooser jfc = new JFileChooser("C:\\quang02.github.io\\Duan1\\src\\AnhNV");
-
 //        if (jfc.showOpenDialog(this) == JFileChooser.APPROVE_OPTION) {
 //            File file = jfc.getSelectedFile();
 //            BufferedImage img;
