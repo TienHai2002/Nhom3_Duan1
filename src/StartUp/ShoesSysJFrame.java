@@ -16,7 +16,7 @@ public class ShoesSysJFrame extends javax.swing.JFrame {
     Timer t;
 //    LSGDJInternalFrame lichsugiaodich;
     SanPhamJInternalFrame quanlisanpham;
-//    KhachHangJInternalFrame quanlikhachhang;
+    KhachHangJInternalFrame quanlikhachhang;
 //    NhaCungCapJInternalFrame quanlinhacungcap;
     NhanVienJInternalFrame quanlinhanvien;
     Color color;
@@ -216,16 +216,15 @@ public class ShoesSysJFrame extends javax.swing.JFrame {
         pnNen.setPreferredSize(new java.awt.Dimension(0, 532));
 
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/banner.png"))); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/manhinhchinh.gif"))); // NOI18N
 
         javax.swing.GroupLayout pnNenLayout = new javax.swing.GroupLayout(pnNen);
         pnNen.setLayout(pnNenLayout);
         pnNenLayout.setHorizontalGroup(
             pnNenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnNenLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(jLabel1)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         pnNenLayout.setVerticalGroup(
             pnNenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -605,20 +604,20 @@ public class ShoesSysJFrame extends javax.swing.JFrame {
     }
 
     private void openQuanLiKhachHang() {
-//        if (Auth.isLogin()) {
-//            try {
-//                quanlikhachhang.setClosed(true);
-//            } catch (Exception e) {
-//            }
-//            quanlikhachhang = new KhachHangJInternalFrame(color);
-//            int x = this.getWidth() / 2 - quanlikhachhang.getWidth() / 2;
-//            int y = (this.getHeight() - 40) / 2 - quanlikhachhang.getHeight() / 2 - 40;
-//            quanlikhachhang.setLocation(x, y);
-//            desktop.add(quanlikhachhang);
-//            quanlikhachhang.setVisible(true);
-//        } else {
-//            MsgBox.alert(this, "Vui lòng đăng nhập !");
-//        }
+        if (ShareHelper.isLogin()) {
+            try {
+                quanlikhachhang.setClosed(true);
+            } catch (Exception e) {
+            }
+            quanlikhachhang = new KhachHangJInternalFrame(color);
+            int x = this.getWidth() / 2 - quanlikhachhang.getWidth() / 2;
+            int y = (this.getHeight() - 40) / 2 - quanlikhachhang.getHeight() / 2 - 40;
+            quanlikhachhang.setLocation(x, y);
+            desktop.add(quanlikhachhang);
+            quanlikhachhang.setVisible(true);
+        } else {
+            MsgBoxHelper.alert(this, "Vui lòng đăng nhập !");
+        }
     }
 
     private void openNhaCungCap() {

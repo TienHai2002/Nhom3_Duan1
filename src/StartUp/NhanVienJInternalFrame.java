@@ -4,7 +4,6 @@ import DAO.NhanVienDAO;
 import model.NhanVien;
 
 import helper.*;
-
 import helper.DateHelper;
 import helper.MsgBoxHelper;
 import helper.ShareHelper;
@@ -52,6 +51,7 @@ public class NhanVienJInternalFrame extends javax.swing.JInternalFrame {
         btnPrePage = new javax.swing.JButton();
         btnNextPage = new javax.swing.JButton();
         lblChiSo = new javax.swing.JLabel();
+        btnXuatExcel = new javax.swing.JButton();
         pn3 = new javax.swing.JPanel();
         lblHinhAnh = new javax.swing.JLabel();
         btnFirst = new javax.swing.JButton();
@@ -141,33 +141,45 @@ public class NhanVienJInternalFrame extends javax.swing.JInternalFrame {
         lblChiSo.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         lblChiSo.setText("1");
 
+        btnXuatExcel.setText("Xuất báo cáo");
+        btnXuatExcel.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnXuatExcelMouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout pn2Layout = new javax.swing.GroupLayout(pn2);
         pn2.setLayout(pn2Layout);
         pn2Layout.setHorizontalGroup(
             pn2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pn2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 584, Short.MAX_VALUE)
+                .addGroup(pn2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(pn2Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 596, Short.MAX_VALUE))
+                    .addGroup(pn2Layout.createSequentialGroup()
+                        .addGap(221, 221, 221)
+                        .addComponent(btnPrePage)
+                        .addGap(18, 18, 18)
+                        .addComponent(lblChiSo)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnNextPage)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnXuatExcel)))
                 .addContainerGap())
-            .addGroup(pn2Layout.createSequentialGroup()
-                .addGap(221, 221, 221)
-                .addComponent(btnPrePage)
-                .addGap(18, 18, 18)
-                .addComponent(lblChiSo)
-                .addGap(18, 18, 18)
-                .addComponent(btnNextPage)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         pn2Layout.setVerticalGroup(
             pn2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pn2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 361, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 381, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
-                .addGroup(pn2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnPrePage)
-                    .addComponent(btnNextPage)
-                    .addComponent(lblChiSo))
+                .addGroup(pn2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(pn2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(btnPrePage)
+                        .addComponent(btnNextPage)
+                        .addComponent(lblChiSo))
+                    .addComponent(btnXuatExcel))
                 .addContainerGap())
         );
 
@@ -445,11 +457,11 @@ public class NhanVienJInternalFrame extends javax.swing.JInternalFrame {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(tabs)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(177, 177, 177)
+                .addGap(194, 194, 194)
                 .addComponent(jLabel1)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addComponent(tabs)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -531,6 +543,10 @@ public class NhanVienJInternalFrame extends javax.swing.JInternalFrame {
 //        chonAnh();
     }//GEN-LAST:event_lblHinhAnhMouseClicked
 
+    private void btnXuatExcelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnXuatExcelMouseClicked
+        
+    }//GEN-LAST:event_btnXuatExcelMouseClicked
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private com.toedter.calendar.JDateChooser DCNgaySinh;
@@ -544,6 +560,7 @@ public class NhanVienJInternalFrame extends javax.swing.JInternalFrame {
     private javax.swing.JButton btnSua;
     private javax.swing.JButton btnThem;
     private javax.swing.JButton btnVoHieuHoa;
+    private javax.swing.JButton btnXuatExcel;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.ButtonGroup buttonGroup2;
     private javax.swing.ButtonGroup buttonGroup3;
