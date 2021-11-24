@@ -13,7 +13,6 @@ import java.awt.Color;
 import java.awt.Image;
 import java.awt.image.BufferedImage;
 import java.io.File;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.List;
 import javax.imageio.ImageIO;
@@ -21,11 +20,6 @@ import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumnModel;
-import org.apache.poi.ss.usermodel.Cell;
-import org.apache.poi.ss.usermodel.CellType;
-import org.apache.poi.xssf.usermodel.XSSFRow;
-import org.apache.poi.xssf.usermodel.XSSFSheet;
-import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 public class NhanVienJInternalFrame extends javax.swing.JInternalFrame {
 
@@ -58,7 +52,6 @@ public class NhanVienJInternalFrame extends javax.swing.JInternalFrame {
         btnPrePage = new javax.swing.JButton();
         btnNextPage = new javax.swing.JButton();
         lblChiSo = new javax.swing.JLabel();
-        btnXuatExcel = new javax.swing.JButton();
         pn3 = new javax.swing.JPanel();
         lblHinhAnh = new javax.swing.JLabel();
         btnFirst = new javax.swing.JButton();
@@ -148,44 +141,33 @@ public class NhanVienJInternalFrame extends javax.swing.JInternalFrame {
         lblChiSo.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         lblChiSo.setText("1");
 
-        btnXuatExcel.setText("Xuất báo cáo");
-        btnXuatExcel.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnXuatExcelMouseClicked(evt);
-            }
-        });
-
         javax.swing.GroupLayout pn2Layout = new javax.swing.GroupLayout(pn2);
         pn2.setLayout(pn2Layout);
         pn2Layout.setHorizontalGroup(
             pn2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pn2Layout.createSequentialGroup()
-                .addGroup(pn2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(pn2Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 584, Short.MAX_VALUE))
-                    .addGroup(pn2Layout.createSequentialGroup()
-                        .addGap(221, 221, 221)
-                        .addComponent(btnPrePage)
-                        .addGap(18, 18, 18)
-                        .addComponent(lblChiSo)
-                        .addGap(18, 18, 18)
-                        .addComponent(btnNextPage)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 126, Short.MAX_VALUE)
-                        .addComponent(btnXuatExcel)))
+                .addContainerGap()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 584, Short.MAX_VALUE)
                 .addContainerGap())
+            .addGroup(pn2Layout.createSequentialGroup()
+                .addGap(221, 221, 221)
+                .addComponent(btnPrePage)
+                .addGap(18, 18, 18)
+                .addComponent(lblChiSo)
+                .addGap(18, 18, 18)
+                .addComponent(btnNextPage)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         pn2Layout.setVerticalGroup(
             pn2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pn2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 376, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 361, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
                 .addGroup(pn2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnPrePage)
                     .addComponent(btnNextPage)
-                    .addComponent(lblChiSo)
-                    .addComponent(btnXuatExcel))
+                    .addComponent(lblChiSo))
                 .addContainerGap())
         );
 
@@ -549,95 +531,6 @@ public class NhanVienJInternalFrame extends javax.swing.JInternalFrame {
 //        chonAnh();
     }//GEN-LAST:event_lblHinhAnhMouseClicked
 
-    private void btnXuatExcelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnXuatExcelMouseClicked
-        XSSFWorkbook workbook = new XSSFWorkbook();
-        XSSFSheet sheet = workbook.createSheet("Nhân viên");
-
-        XSSFRow row = null;
-        Cell cell = null;
-
-        row = sheet.createRow((short) 2);
-        row.setHeight((short) 500);
-        cell = row.createCell(0, CellType.STRING);
-        cell.setCellValue("STT");
-        cell = row.createCell(1, CellType.STRING);
-        cell.setCellValue("Mã nhân viên");
-        cell = row.createCell(2, CellType.STRING);
-        cell.setCellValue("Tên nhân viên");
-        cell = row.createCell(3, CellType.STRING);
-        cell.setCellValue("Mật khẩu");
-        cell = row.createCell(4, CellType.STRING);
-        cell.setCellValue("Địa chỉ");
-        cell = row.createCell(5, CellType.STRING);
-        cell.setCellValue("SĐT");
-        cell = row.createCell(6, CellType.STRING);
-        cell.setCellValue("Email");
-        cell = row.createCell(7, CellType.STRING);
-        cell.setCellValue("Ngày sinh");
-        cell = row.createCell(8, CellType.STRING);
-        cell.setCellValue("Giới tính");
-        cell = row.createCell(9, CellType.STRING);
-        cell.setCellValue("Ảnh");
-        cell = row.createCell(10, CellType.STRING);
-        cell.setCellValue("Trạng thái");
-        cell = row.createCell(11, CellType.STRING);
-        cell.setCellValue("Vai trò");
-
-//        List<nhanVien> listItem = dao.select();
-        if (list != null) {
-            FileOutputStream fis = null;
-            try {
-                int s = list.size();
-                for (int i = 0; i < s; i++) {
-                    NhanVien nv1 = list.get(i);
-                    row = sheet.createRow((short) 4 + i);
-                    cell = row.createCell(0, CellType.NUMERIC);
-                    cell.setCellValue(i + 1);
-
-                    cell = row.createCell(1, CellType.STRING);
-                    cell.setCellValue(nv1.getMaNV());
-
-                    cell = row.createCell(2, CellType.STRING);
-                    cell.setCellValue(nv1.getTenNV());
-
-                    cell = row.createCell(3, CellType.STRING);
-                    cell.setCellValue(nv1.getMatKhau());
-
-                    cell = row.createCell(4, CellType.STRING);
-                    cell.setCellValue(nv1.getDiaChi());
-
-                    cell = row.createCell(5, CellType.STRING);
-                    cell.setCellValue(nv1.getsDT());
-
-                    cell = row.createCell(6, CellType.STRING);
-                    cell.setCellValue(nv1.getEmail());
-
-                    cell = row.createCell(7, CellType.STRING);
-                    cell.setCellValue(nv1.getNgaySinh());
-
-                    cell = row.createCell(8, CellType.STRING);
-                    cell.setCellValue(nv1.isGioiTinh());
-
-                    cell = row.createCell(9, CellType.STRING);
-                    cell.setCellValue(nv1.getAnhNV());
-
-                    cell = row.createCell(10, CellType.STRING);
-                    cell.setCellValue(nv1.isTrangThai());
-
-                    cell = row.createCell(11, CellType.STRING);
-                    cell.setCellValue(nv1.isVaiTro());
-                }
-                //save file
-                File f = new File("src/nhanvien.xlsx");
-                fis = new FileOutputStream(f);
-                workbook.write(fis);
-                fis.close();
-            } catch (Exception ex) {
-                ex.printStackTrace();
-            }
-        }
-    }//GEN-LAST:event_btnXuatExcelMouseClicked
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private com.toedter.calendar.JDateChooser DCNgaySinh;
@@ -651,7 +544,6 @@ public class NhanVienJInternalFrame extends javax.swing.JInternalFrame {
     private javax.swing.JButton btnSua;
     private javax.swing.JButton btnThem;
     private javax.swing.JButton btnVoHieuHoa;
-    private javax.swing.JButton btnXuatExcel;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.ButtonGroup buttonGroup2;
     private javax.swing.ButtonGroup buttonGroup3;
@@ -925,8 +817,11 @@ public class NhanVienJInternalFrame extends javax.swing.JInternalFrame {
     }
 
 //    void chonAnh() {
+
 //        JFileChooser jfc = new JFileChooser("\\src\\AnhNV");
+
 //        JFileChooser jfc = new JFileChooser("C:\\quang02.github.io\\Duan1\\src\\AnhNV");
+
 //        if (jfc.showOpenDialog(this) == JFileChooser.APPROVE_OPTION) {
 //            File file = jfc.getSelectedFile();
 //            BufferedImage img;
