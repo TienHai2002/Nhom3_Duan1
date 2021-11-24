@@ -510,6 +510,9 @@ public class KhachHangJInternalFrame extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnLastActionPerformed
 
     private void btnXuatExcelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnXuatExcelMouseClicked
+
+        
+
         XSSFWorkbook workbook = new XSSFWorkbook();
         XSSFSheet sheet = workbook.createSheet("Khách hàng");
 
@@ -586,6 +589,7 @@ public class KhachHangJInternalFrame extends javax.swing.JInternalFrame {
                 ex.printStackTrace();
             }
         }
+
     }//GEN-LAST:event_btnXuatExcelMouseClicked
 
 
