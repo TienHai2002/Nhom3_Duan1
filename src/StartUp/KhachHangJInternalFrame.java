@@ -6,9 +6,16 @@ import helper.ShareHelper;
 import helper.MsgBoxHelper;
 import helper.DateHelper;
 import java.awt.Color;
+import java.io.File;
+import java.io.FileOutputStream;
 import java.util.List;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumnModel;
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.CellType;
+import org.apache.poi.xssf.usermodel.XSSFRow;
+import org.apache.poi.xssf.usermodel.XSSFSheet;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 public class KhachHangJInternalFrame extends javax.swing.JInternalFrame {
 
@@ -503,7 +510,86 @@ public class KhachHangJInternalFrame extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnLastActionPerformed
 
     private void btnXuatExcelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnXuatExcelMouseClicked
+
         
+
+        XSSFWorkbook workbook = new XSSFWorkbook();
+        XSSFSheet sheet = workbook.createSheet("Khách hàng");
+
+        XSSFRow row = null;
+        Cell cell = null;
+
+        row = sheet.createRow((short) 2);
+        row.setHeight((short) 500);
+        cell = row.createCell(0, CellType.STRING);
+        cell.setCellValue("STT");
+        cell = row.createCell(1, CellType.STRING);
+        cell.setCellValue("Mã khách hàng");
+        cell = row.createCell(2, CellType.STRING);
+        cell.setCellValue("Tên khách hàng");
+        cell = row.createCell(3, CellType.STRING);
+        cell.setCellValue("SĐT");
+        cell = row.createCell(4, CellType.STRING);
+        cell.setCellValue("Email");
+        cell = row.createCell(5, CellType.STRING);
+        cell.setCellValue("Ngày sinh");
+        cell = row.createCell(6, CellType.STRING);
+        cell.setCellValue("Giới tính");
+        cell = row.createCell(7, CellType.STRING);
+        cell.setCellValue("Tích điểm");
+        cell = row.createCell(8, CellType.STRING);
+        cell.setCellValue("Mã NV");
+        cell = row.createCell(9, CellType.STRING);
+        cell.setCellValue("Trạng thái");
+
+//        List<nhanVien> listItem = dao.select();
+        if (list != null) {
+            FileOutputStream fis = null;
+            try {
+                int s = list.size();
+                for (int i = 0; i < s; i++) {
+                    KhachHang kh1 = list.get(i);
+                    row = sheet.createRow((short) 4 + i);
+                    cell = row.createCell(0, CellType.NUMERIC);
+                    cell.setCellValue(i + 1);
+
+                    cell = row.createCell(1, CellType.STRING);
+                    cell.setCellValue(kh1.getMaKH());
+
+                    cell = row.createCell(2, CellType.STRING);
+                    cell.setCellValue(kh1.getTenKH());
+
+                    cell = row.createCell(3, CellType.STRING);
+                    cell.setCellValue(kh1.getsDT());
+
+                    cell = row.createCell(4, CellType.STRING);
+                    cell.setCellValue(kh1.getEmail());
+
+                    cell = row.createCell(5, CellType.STRING);
+                    cell.setCellValue(kh1.getNgaySinh());
+
+                    cell = row.createCell(6, CellType.STRING);
+                    cell.setCellValue(kh1.isGioiTinh());
+
+                    cell = row.createCell(7, CellType.STRING);
+                    cell.setCellValue(kh1.getDiemThuong());
+
+                    cell = row.createCell(8, CellType.STRING);
+                    cell.setCellValue(kh1.getMaNV());
+
+                    cell = row.createCell(9, CellType.STRING);
+                    cell.setCellValue(kh1.isTrangThai());
+                }
+                //save file
+                File f = new File("src/khachhang.xlsx");
+                fis = new FileOutputStream(f);
+                workbook.write(fis);
+                fis.close();
+            } catch (Exception ex) {
+                ex.printStackTrace();
+            }
+        }
+
     }//GEN-LAST:event_btnXuatExcelMouseClicked
 
 

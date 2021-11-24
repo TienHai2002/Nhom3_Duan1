@@ -114,6 +114,7 @@ public class DangNhapJDialog extends javax.swing.JDialog {
         pn2.setBackground(new java.awt.Color(255, 255, 255));
 
 
+
         Remember.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         Remember.setText("Nhớ mật khẩu");
 
