@@ -6,16 +6,9 @@ import helper.ShareHelper;
 import helper.MsgBoxHelper;
 import helper.DateHelper;
 import java.awt.Color;
-import java.io.File;
-import java.io.FileOutputStream;
 import java.util.List;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumnModel;
-import org.apache.poi.ss.usermodel.Cell;
-import org.apache.poi.ss.usermodel.CellType;
-import org.apache.poi.xssf.usermodel.XSSFRow;
-import org.apache.poi.xssf.usermodel.XSSFSheet;
-import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 public class KhachHangJInternalFrame extends javax.swing.JInternalFrame {
 
@@ -47,7 +40,6 @@ public class KhachHangJInternalFrame extends javax.swing.JInternalFrame {
         btnPrePage = new javax.swing.JButton();
         lblChiSo = new javax.swing.JLabel();
         btnNextPage = new javax.swing.JButton();
-        btnXuatExcel = new javax.swing.JButton();
         pn3 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         txtMaKhachHang = new javax.swing.JTextField();
@@ -156,33 +148,23 @@ public class KhachHangJInternalFrame extends javax.swing.JInternalFrame {
             }
         });
 
-        btnXuatExcel.setText("Xuất báo cáo");
-        btnXuatExcel.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnXuatExcelMouseClicked(evt);
-            }
-        });
-
         javax.swing.GroupLayout pn2Layout = new javax.swing.GroupLayout(pn2);
         pn2.setLayout(pn2Layout);
         pn2Layout.setHorizontalGroup(
             pn2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(pn4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(pn2Layout.createSequentialGroup()
-                .addGroup(pn2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(pn2Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 623, Short.MAX_VALUE))
-                    .addGroup(pn2Layout.createSequentialGroup()
-                        .addGap(234, 234, 234)
-                        .addComponent(btnPrePage)
-                        .addGap(18, 18, 18)
-                        .addComponent(lblChiSo)
-                        .addGap(18, 18, 18)
-                        .addComponent(btnNextPage)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 144, Short.MAX_VALUE)
-                        .addComponent(btnXuatExcel)))
+                .addContainerGap()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 623, Short.MAX_VALUE)
                 .addContainerGap())
+            .addGroup(pn2Layout.createSequentialGroup()
+                .addGap(234, 234, 234)
+                .addComponent(btnPrePage)
+                .addGap(18, 18, 18)
+                .addComponent(lblChiSo)
+                .addGap(18, 18, 18)
+                .addComponent(btnNextPage)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         pn2Layout.setVerticalGroup(
             pn2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -194,9 +176,8 @@ public class KhachHangJInternalFrame extends javax.swing.JInternalFrame {
                 .addGroup(pn2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnPrePage)
                     .addComponent(lblChiSo)
-                    .addComponent(btnNextPage)
-                    .addComponent(btnXuatExcel))
-                .addGap(0, 30, Short.MAX_VALUE))
+                    .addComponent(btnNextPage))
+                .addGap(0, 27, Short.MAX_VALUE))
         );
 
         tabs.addTab("Danh Sách", pn2);
@@ -509,6 +490,7 @@ public class KhachHangJInternalFrame extends javax.swing.JInternalFrame {
         last();
     }//GEN-LAST:event_btnLastActionPerformed
 
+
     private void btnXuatExcelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnXuatExcelMouseClicked
 
         
@@ -605,7 +587,6 @@ public class KhachHangJInternalFrame extends javax.swing.JInternalFrame {
     private javax.swing.JButton btnSua;
     private javax.swing.JButton btnThem;
     private javax.swing.JButton btnVoHieuHoa;
-    private javax.swing.JButton btnXuatExcel;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;

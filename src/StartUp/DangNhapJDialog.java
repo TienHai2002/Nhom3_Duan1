@@ -17,6 +17,7 @@ import javax.swing.JTextField;
 public class DangNhapJDialog extends javax.swing.JDialog {
     public Preferences pref = Preferences.userRoot().node("Remember");
     ImageIcon poster = new ImageIcon("src/icon/poster.gif");
+    ImageIcon logo = new ImageIcon("src/icon/logo_2.png");
     ImageIcon show = new ImageIcon("src/icon/show.png");
     ImageIcon unshow = new ImageIcon("src/icon/unshow.png");
     NhanVienDAO dao = new NhanVienDAO();
@@ -26,7 +27,6 @@ public class DangNhapJDialog extends javax.swing.JDialog {
         initComponents();
         init();
         String user = null;
-        
         if(pref.get("Tên Đăng Nhập", user) == null) {
             txtTenDangNhap2.setText("Tên Đăng Nhập");
         } else {
@@ -113,7 +113,7 @@ public class DangNhapJDialog extends javax.swing.JDialog {
 
         pn2.setBackground(new java.awt.Color(255, 255, 255));
 
-
+        lblIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/logo_2.png"))); // NOI18N
 
         Remember.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         Remember.setText("Nhớ mật khẩu");
