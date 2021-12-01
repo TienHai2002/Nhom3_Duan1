@@ -22,6 +22,7 @@ public class KhachHangJInternalFrame extends javax.swing.JInternalFrame {
     KhachHangDAO dao = new KhachHangDAO();
     int row = -1;
     int index = 0;
+    int check;
 
     public KhachHangJInternalFrame(Color color) {
         initComponents();
@@ -73,6 +74,7 @@ public class KhachHangJInternalFrame extends javax.swing.JInternalFrame {
         btnFirst = new javax.swing.JButton();
         jLabel10 = new javax.swing.JLabel();
         txtMaNV = new javax.swing.JTextField();
+        DCNgaySinh = new com.toedter.calendar.JDateChooser();
 
         setClosable(true);
         setIconifiable(true);
@@ -327,7 +329,7 @@ public class KhachHangJInternalFrame extends javax.swing.JInternalFrame {
                         .addComponent(btnVoHieuHoa)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(btnMoi, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 42, Short.MAX_VALUE)
                         .addComponent(btnFirst, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(btnPre, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -358,7 +360,8 @@ public class KhachHangJInternalFrame extends javax.swing.JInternalFrame {
                                     .addComponent(jLabel6)
                                     .addComponent(jLabel3)
                                     .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 268, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txtMaNV, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(txtMaNV, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(DCNgaySinh, javax.swing.GroupLayout.PREFERRED_SIZE, 268, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(0, 0, Short.MAX_VALUE)))))
                 .addContainerGap())
         );
@@ -377,11 +380,16 @@ public class KhachHangJInternalFrame extends javax.swing.JInternalFrame {
                 .addGroup(pn3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel5)
                     .addComponent(jLabel6))
-                .addGap(7, 7, 7)
-                .addGroup(pn3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(rdoNam)
-                    .addComponent(rdoNu))
-                .addGap(23, 23, 23)
+                .addGroup(pn3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(pn3Layout.createSequentialGroup()
+                        .addGap(7, 7, 7)
+                        .addGroup(pn3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(rdoNam)
+                            .addComponent(rdoNu)))
+                    .addGroup(pn3Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(DCNgaySinh, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(18, 18, 18)
                 .addGroup(pn3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
                     .addComponent(jLabel7))
@@ -397,7 +405,7 @@ public class KhachHangJInternalFrame extends javax.swing.JInternalFrame {
                 .addGroup(pn3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(txtDiemThuong, javax.swing.GroupLayout.DEFAULT_SIZE, 32, Short.MAX_VALUE)
                     .addComponent(txtMaNV))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 63, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 64, Short.MAX_VALUE)
                 .addGroup(pn3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnThem, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnSua, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -468,13 +476,15 @@ public class KhachHangJInternalFrame extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnNextPageActionPerformed
 
     private void btnThemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemActionPerformed
-        if (checkForm()) {
+        checkFormInsert();
+        if (check == 1) {
             insert();
         }
     }//GEN-LAST:event_btnThemActionPerformed
 
     private void btnSuaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSuaActionPerformed
-        if (checkForm()) {
+        checkFormUpdate();
+        if (check == 1) {
             update();
         }
     }//GEN-LAST:event_btnSuaActionPerformed
@@ -585,6 +595,7 @@ public class KhachHangJInternalFrame extends javax.swing.JInternalFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private com.toedter.calendar.JDateChooser DCNgaySinh;
     private javax.swing.JButton btnFirst;
     private javax.swing.JButton btnLast;
     private javax.swing.JButton btnMoi;
@@ -651,6 +662,8 @@ public class KhachHangJInternalFrame extends javax.swing.JInternalFrame {
         try {
             dao.insert(kh);
             this.fillTable(0);
+            btnPrePage.setEnabled(false);
+            btnNextPage.setEnabled(true);
             this.clearForm();
             MsgBoxHelper.alert(this, "Thêm mới thành công !!");
             lblChiSo.setText(1 + "");
@@ -665,6 +678,8 @@ public class KhachHangJInternalFrame extends javax.swing.JInternalFrame {
         try {
             dao.update(kh);
             this.fillTable(0);
+            btnPrePage.setEnabled(false);
+            btnNextPage.setEnabled(true);
             MsgBoxHelper.alert(this, "Sửa thành công !!");
             lblChiSo.setText(1 + "");
         } catch (Exception e) {
@@ -683,6 +698,8 @@ public class KhachHangJInternalFrame extends javax.swing.JInternalFrame {
                 try {
                     dao.vohieuhoa(maKH);
                     fillTable(0);
+                    btnPrePage.setEnabled(false);
+                    btnNextPage.setEnabled(true);
                     clearForm();
                     MsgBoxHelper.alert(this, "Vô hiệu hóa thành công !!");
                     lblChiSo.setText(1 + "");
@@ -741,8 +758,9 @@ public class KhachHangJInternalFrame extends javax.swing.JInternalFrame {
     void fillTable(int index) {
         DefaultTableModel mol = (DefaultTableModel) tblDanhSach.getModel();
         mol.setRowCount(0);
+        String key = txtTimKiem.getText();
         try {
-            List<KhachHang> listkh = dao.selectPage(index);
+            List<KhachHang> listkh = dao.selectPage(key, index);
             for (KhachHang kh : listkh) {
                 Object[] row = {kh.getMaKH(), kh.getTenKH(), kh.getsDT(), kh.getEmail(), kh.getNgaySinh(),
                     kh.isGioiTinh() ? "Nam" : "Nữ", kh.getDiemThuong(), kh.getMaNV()};
@@ -760,7 +778,7 @@ public class KhachHangJInternalFrame extends javax.swing.JInternalFrame {
     void updatePage() {
         boolean page = (this.index >= 0);
         boolean fpage = (this.index == 0);
-        boolean lpage = (this.index == Math.round(count));
+        boolean lpage = (tblDanhSach.getRowCount() <= 8);
         btnNextPage.setEnabled(page && !lpage);
         btnPrePage.setEnabled(page && !fpage);
     }
@@ -785,6 +803,7 @@ public class KhachHangJInternalFrame extends javax.swing.JInternalFrame {
         txtMaKhachHang.setText(kh.getMaKH());
         txtTenKhachHang.setText(String.valueOf(kh.getTenKH()));
         rdoNam.setSelected(kh.isGioiTinh());
+        rdoNu.setSelected(!kh.isGioiTinh());
         DCNgaySinh.setDate(DateHelper.toDate(kh.getNgaySinh(), "yyyy-MM-dd"));
         txtSDT.setText(kh.getsDT());
         txtEmail.setText(kh.getEmail());
@@ -797,6 +816,7 @@ public class KhachHangJInternalFrame extends javax.swing.JInternalFrame {
         kh.setMaKH(txtMaKhachHang.getText());
         kh.setTenKH(txtTenKhachHang.getText());
         kh.setGioiTinh(rdoNam.isSelected());
+        kh.setGioiTinh(!rdoNu.isSelected());
         kh.setNgaySinh(DateHelper.toString(DCNgaySinh.getDate(), "yyyy-MM-dd"));
         kh.setsDT(txtSDT.getText());
         kh.setEmail(txtEmail.getText());
@@ -827,25 +847,83 @@ public class KhachHangJInternalFrame extends javax.swing.JInternalFrame {
         this.updateStatus();
     }
 
-    boolean checkForm() {
-        if (txtMaKhachHang.getText().equals("")) {
-            MsgBoxHelper.alert(this, "Không để trống mã khách hàng");
+    void checkFormUpdate() {
+        KhachHang kh = dao.selectById(txtMaKhachHang.getText());
+        if (kh == null) {
+            MsgBoxHelper.alert(this, "Mã khách hàng không tồn tại !!");
             txtMaKhachHang.requestFocus();
-            return false;
-        } else if (txtTenKhachHang.getText().equals("")) {
-            MsgBoxHelper.alert(this, "Không để trống họ tên");
-            txtTenKhachHang.requestFocus();
-            return false;
-//        } else if (txtTenNV.getText().equals("")) {
-//            MsgBox.alert(this, "Không để trống họ tên");
-//            txtTenNV.requestFocus();
-//            return false;
-//        } else if (txtTenNV.getText().equals("")) {
-//            MsgBox.alert(this, "Không để trống họ tên");
-//            txtTenNV.requestFocus();
-//            return false;
+            check = 0;
+            return;
+        } else if (txtMaKhachHang.getText().equals("")) {
+            MsgBoxHelper.alert(this, "Không để trống mã khách hàng !!");
+            txtMaKhachHang.requestFocus();
+            check = 0;
+            return;
         } else {
-            return true;
+            check = 1;
+        }
+        if (txtTenKhachHang.getText().equals("")) {
+            MsgBoxHelper.alert(this, "Không để trống họ tên khách hàng !!");
+            txtTenKhachHang.requestFocus();
+            check = 0;
+            return;
+        } else {
+            check = 1;
+        }
+        if (DCNgaySinh.getDate() == null) {
+            MsgBoxHelper.alert(this, "Không để trống ngày sinh!!");
+            check = 0;
+            return;
+        } else {
+            check = 1;
+        }
+        if (txtSDT.getText().equals("")) {
+            MsgBoxHelper.alert(this, "Không để trống số điện thoại !!");
+            txtTenKhachHang.requestFocus();
+            check = 0;
+            return;
+        } else {
+            check = 1;
+        }
+    }
+
+    void checkFormInsert() {
+        KhachHang kh = dao.selectById(txtMaKhachHang.getText());
+        if (kh != null) {
+            MsgBoxHelper.alert(this, "Mã khách hàng đã tồn tại !!");
+            txtMaKhachHang.requestFocus();
+            check = 0;
+            return;
+        } else if (txtMaKhachHang.getText().equals("")) {
+            MsgBoxHelper.alert(this, "Không để trống mã khách hàng !!");
+            txtMaKhachHang.requestFocus();
+            check = 0;
+            return;
+        } else {
+            check = 1;
+        }
+        if (txtTenKhachHang.getText().equals("")) {
+            MsgBoxHelper.alert(this, "Không để trống họ tên khách hàng !!");
+            txtTenKhachHang.requestFocus();
+            check = 0;
+            return;
+        } else {
+            check = 1;
+        }
+        if (DCNgaySinh.getDate() == null) {
+            MsgBoxHelper.alert(this, "Không để trống ngày sinh!!");
+            check = 0;
+            return;
+        } else {
+            check = 1;
+        }
+        if (txtSDT.getText().equals("")) {
+            MsgBoxHelper.alert(this, "Không để trống số điện thoại !!");
+            txtTenKhachHang.requestFocus();
+            check = 0;
+            return;
+        } else {
+            check = 1;
         }
     }
 }
