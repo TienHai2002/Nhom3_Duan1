@@ -20,7 +20,6 @@ import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumnModel;
-import model.KhachHang;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.CellType;
 import org.apache.poi.xssf.usermodel.XSSFRow;
@@ -32,6 +31,7 @@ public class NhanVienJInternalFrame extends javax.swing.JInternalFrame {
     NhanVienDAO dao = new NhanVienDAO();
     int row = -1;
     int index = 0;
+    int check;
 
     public NhanVienJInternalFrame(Color color) {
         initComponents();
@@ -504,13 +504,15 @@ public class NhanVienJInternalFrame extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnNextPageActionPerformed
 
     private void btnThemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemActionPerformed
-        if (checkForm()) {
+        checkFormInsert();
+        if (check == 1) {
             insert();
         }
     }//GEN-LAST:event_btnThemActionPerformed
 
     private void btnSuaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSuaActionPerformed
-        if (checkForm()) {
+        checkFormUpdate();
+        if (check == 1) {
             update();
         }
     }//GEN-LAST:event_btnSuaActionPerformed
@@ -547,7 +549,7 @@ public class NhanVienJInternalFrame extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_tblDanhSachMouseClicked
 
     private void lblHinhAnhMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblHinhAnhMouseClicked
-//        chonAnh();
+        chonAnh();
     }//GEN-LAST:event_lblHinhAnhMouseClicked
 
     private void btnXuatExcelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnXuatExcelMouseClicked
@@ -704,7 +706,10 @@ public class NhanVienJInternalFrame extends javax.swing.JInternalFrame {
             try {
                 dao.insert(nv);
                 this.fillTable(0);
+                btnPrePage.setEnabled(false);
+                btnNextPage.setEnabled(true);
                 this.clearForm();
+                tabs.setSelectedIndex(0);
                 MsgBoxHelper.alert(this, "Thêm mới thành công !!");
                 lblChiSo.setText(1 + "");
             } catch (Exception e) {
@@ -722,6 +727,9 @@ public class NhanVienJInternalFrame extends javax.swing.JInternalFrame {
             try {
                 dao.update(nv);
                 this.fillTable(0);
+                btnPrePage.setEnabled(false);
+                btnNextPage.setEnabled(true);
+                tabs.setSelectedIndex(0);
                 MsgBoxHelper.alert(this, "Sửa thành công !!");
                 lblChiSo.setText(1 + "");
             } catch (Exception e) {
@@ -742,7 +750,10 @@ public class NhanVienJInternalFrame extends javax.swing.JInternalFrame {
                 try {
                     dao.vohieuhoa(maNV);
                     fillTable(0);
+                    btnPrePage.setEnabled(false);
+                    btnNextPage.setEnabled(true);
                     clearForm();
+                    tabs.setSelectedIndex(0);
                     MsgBoxHelper.alert(this, "Vô hiệu hóa thành công !!");
                     lblChiSo.setText(1 + "");
                 } catch (Exception e) {
@@ -815,12 +826,12 @@ public class NhanVienJInternalFrame extends javax.swing.JInternalFrame {
         }
     }
     List<NhanVien> list = dao.selectAll();
-    double count = (list.size() / 5);
+    double count = (list.size() / 10);
 
     void updatePage() {
         boolean page = (this.index >= 0);
         boolean fpage = (this.index == 0);
-        boolean lpage = (this.index == Math.round(count));
+        boolean lpage = (tblDanhSach.getRowCount() <= 8);
         btnNextPage.setEnabled(page && !lpage);
         btnPrePage.setEnabled(page && !fpage);
     }
@@ -851,11 +862,11 @@ public class NhanVienJInternalFrame extends javax.swing.JInternalFrame {
         rdoQuanLy.setSelected(nv.isVaiTro());
         txtDiaChi.setText(nv.getDiaChi());
         if (nv.getAnhNV() != null) {
-//            lblHinhAnh.setToolTipText(cd.getHinhAnh());
+            lblHinhAnh.setToolTipText(nv.getAnhNV());
 //            lblHinhAnh.setIcon(XImage.read(cd.getHinhAnh()));
             try {
                 BufferedImage img;
-                img = ImageIO.read(new File("C:\\quang02.github.io\\Duan1\\src\\AnhNV", nv.getAnhNV()));
+                img = ImageIO.read(new File("C:\\Users\\huyan\\OneDrive\\Documents\\GitHub\\GitHub\\Nhom3_Duan1\\src\\AnhNV", nv.getAnhNV()));
                 Image dimg = img.getScaledInstance(lblHinhAnh.getWidth(), lblHinhAnh.getHeight(),
                         Image.SCALE_SMOOTH);
                 ImageIcon imageIcon = new ImageIcon(dimg);
@@ -864,6 +875,8 @@ public class NhanVienJInternalFrame extends javax.swing.JInternalFrame {
             } catch (IOException e) {
                 e.printStackTrace();
             }
+        } else {
+            lblHinhAnh.setIcon(null);
         }
     }
 
@@ -876,7 +889,11 @@ public class NhanVienJInternalFrame extends javax.swing.JInternalFrame {
         nv.setEmail(txtEmail.getText());
         nv.setNgaySinh(DateHelper.toString(DCNgaySinh.getDate(), "yyyy-MM-dd"));
         nv.setGioiTinh(rdoNam.isSelected());
-        nv.setAnhNV(lblHinhAnh.getToolTipText());
+        if (lblHinhAnh.getIcon() != null) {
+            nv.setAnhNV(lblHinhAnh.getToolTipText());
+        } else {
+            nv.setAnhNV(null);
+        }
         nv.setVaiTro(rdoQuanLy.isSelected());
         return nv;
     }
@@ -887,6 +904,7 @@ public class NhanVienJInternalFrame extends javax.swing.JInternalFrame {
         boolean last = (this.row == tblDanhSach.getRowCount() - 1);
         //trạng thái form
         txtMaNV.setEditable(!edit);
+        txtEmail.setEditable(!edit);
         btnThem.setEnabled(!edit);
         btnSua.setEnabled(edit);
         btnVoHieuHoa.setEnabled(edit);
@@ -897,47 +915,86 @@ public class NhanVienJInternalFrame extends javax.swing.JInternalFrame {
         btnLast.setEnabled(edit && !last);
     }
 
-    boolean checkForm() {
-        if (txtMaNV.getText().equals("")) {
-            MsgBoxHelper.alert(this, "Không để trống mã nhân viên");
+    void checkFormInsert() {
+        NhanVien nv = dao.selectById(txtMaNV.getText());
+        if (nv != null) {
+            MsgBoxHelper.alert(this, "Mã nhân viên đã tồn tại !!");
             txtMaNV.requestFocus();
-            return false;
-        } else if (txtTenNV.getText().equals("")) {
-            MsgBoxHelper.alert(this, "Không để trống họ tên");
-            txtTenNV.requestFocus();
-            return false;
-//        } else if (txtTenNV.getText().equals("")) {
-//            MsgBox.alert(this, "Không để trống họ tên");
-//            txtTenNV.requestFocus();
-//            return false;
-//        } else if (txtTenNV.getText().equals("")) {
-//            MsgBox.alert(this, "Không để trống họ tên");
-//            txtTenNV.requestFocus();
-//            return false;
+            check = 0;
+            return;
+        } else if (txtMaNV.getText().equals("")) {
+            MsgBoxHelper.alert(this, "Không để trống mã nhân viên !!");
+            txtMaNV.requestFocus();
+            check = 0;
+            return;
         } else {
-            return true;
+            check = 1;
+        }
+
+        if (txtTenNV.getText().equals("")) {
+            MsgBoxHelper.alert(this, "Không để trống họ tên !!");
+            txtTenNV.requestFocus();
+            check = 0;
+            return;
+        } else {
+            check = 1;
+        }
+
+        if (DCNgaySinh.getDate() == null) {
+            MsgBoxHelper.alert(this, "Không để trống ngày sinh!!");
+            check = 0;
+            return;
+        } else {
+            check = 1;
         }
     }
 
-//    void chonAnh() {
-//        JFileChooser jfc = new JFileChooser("\\src\\AnhNV");
-//        JFileChooser jfc = new JFileChooser("C:\\quang02.github.io\\Duan1\\src\\AnhNV");
-//        if (jfc.showOpenDialog(this) == JFileChooser.APPROVE_OPTION) {
-//            File file = jfc.getSelectedFile();
-//            BufferedImage img;
-//            try {
-//                img = ImageIO.read(file);
-//                Image dimg = img.getScaledInstance(lblHinhAnh.getWidth(), lblHinhAnh.getHeight(),
-//                        Image.SCALE_SMOOTH);
-//                ImageIcon imageIcon = new ImageIcon(dimg);
-//                lblHinhAnh.setIcon(imageIcon);
-//
-//            } catch (IOException e) {
-//                e.printStackTrace();
-//            }
-//            XImage.save(file); //lưu hình vào thư mục logo
-//            ImageIcon icon = XImage.read(file.getName()); //đọc hình từ logo
-//            lblHinhAnh.setToolTipText(file.getName());
-//        }
-//    }
+    void checkFormUpdate() {
+        NhanVien nv = dao.selectById(txtMaNV.getText());
+        if (nv == null) {
+            MsgBoxHelper.alert(this, "Mã nhân viên không tồn tại !!");
+            txtMaNV.requestFocus();
+            check = 0;
+            return;
+        } else {
+            check = 1;
+        }
+        if (txtMaNV.getText().equals("")) {
+            MsgBoxHelper.alert(this, "Không để trống mã nhân viên !!");
+            txtMaNV.requestFocus();
+            check = 0;
+            return;
+        } else {
+            check = 1;
+        }
+        if (txtTenNV.getText().equals("")) {
+            MsgBoxHelper.alert(this, "Không để trống họ tên !!");
+            txtTenNV.requestFocus();
+            check = 0;
+            return;
+        } else {
+            check = 1;
+        }
+    }
+
+    void chonAnh() {
+        JFileChooser jfc = new JFileChooser("C:\\Users\\huyan\\OneDrive\\Documents\\GitHub\\GitHub\\Nhom3_Duan1\\src\\AnhNV");
+        if (jfc.showOpenDialog(this) == JFileChooser.APPROVE_OPTION) {
+            File file = jfc.getSelectedFile();
+            BufferedImage img;
+            try {
+                img = ImageIO.read(file);
+                Image dimg = img.getScaledInstance(lblHinhAnh.getWidth(), lblHinhAnh.getHeight(),
+                        Image.SCALE_SMOOTH);
+                ImageIcon imageIcon = new ImageIcon(dimg);
+                lblHinhAnh.setIcon(imageIcon);
+
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            XImage.save(file); //lưu hình vào thư mục logo
+            ImageIcon icon = XImage.read(file.getName()); //đọc hình từ logo
+            lblHinhAnh.setToolTipText(file.getName());
+        }
+    }
 }
