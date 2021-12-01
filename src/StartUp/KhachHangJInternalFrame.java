@@ -544,7 +544,6 @@ public class KhachHangJInternalFrame extends javax.swing.JInternalFrame {
         cell = row.createCell(9, CellType.STRING);
         cell.setCellValue("Trạng thái");
 
-//        List<nhanVien> listItem = dao.select();
         if (list != null) {
             FileOutputStream fis = null;
             try {

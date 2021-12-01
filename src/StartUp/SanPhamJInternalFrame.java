@@ -13,6 +13,7 @@ import java.awt.Color;
 import java.awt.Image;
 import java.awt.image.BufferedImage;
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.List;
 import javax.imageio.ImageIO;
@@ -27,6 +28,11 @@ import model.NhaCungCap;
 import model.SanPham;
 import model.SizeSanPham;
 import model.ThuongHieu;
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.CellType;
+import org.apache.poi.xssf.usermodel.XSSFRow;
+import org.apache.poi.xssf.usermodel.XSSFSheet;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 
 public class SanPhamJInternalFrame extends javax.swing.JInternalFrame {
@@ -67,6 +73,7 @@ public class SanPhamJInternalFrame extends javax.swing.JInternalFrame {
         btnPreDS = new javax.swing.JButton();
         lblChiSoDS = new javax.swing.JLabel();
         btnNextDS = new javax.swing.JButton();
+        btnXuatExcel = new javax.swing.JButton();
         pn5 = new javax.swing.JPanel();
         lblHinhAnh = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -231,6 +238,13 @@ public class SanPhamJInternalFrame extends javax.swing.JInternalFrame {
             }
         });
 
+        btnXuatExcel.setText("Xuất báo cáo");
+        btnXuatExcel.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnXuatExcelMouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout pn2Layout = new javax.swing.GroupLayout(pn2);
         pn2.setLayout(pn2Layout);
         pn2Layout.setHorizontalGroup(
@@ -240,17 +254,20 @@ public class SanPhamJInternalFrame extends javax.swing.JInternalFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(pn4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(pn2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 639, Short.MAX_VALUE)
+                .addGroup(pn2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(pn2Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 639, Short.MAX_VALUE))
+                    .addGroup(pn2Layout.createSequentialGroup()
+                        .addGap(265, 265, 265)
+                        .addComponent(btnPreDS)
+                        .addGap(18, 18, 18)
+                        .addComponent(lblChiSoDS)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnNextDS)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 129, Short.MAX_VALUE)
+                        .addComponent(btnXuatExcel)))
                 .addContainerGap())
-            .addGroup(pn2Layout.createSequentialGroup()
-                .addGap(265, 265, 265)
-                .addComponent(btnPreDS)
-                .addGap(18, 18, 18)
-                .addComponent(lblChiSoDS)
-                .addGap(18, 18, 18)
-                .addComponent(btnNextDS)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         pn2Layout.setVerticalGroup(
             pn2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -259,12 +276,13 @@ public class SanPhamJInternalFrame extends javax.swing.JInternalFrame {
                     .addComponent(pn3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(pn4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 392, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 398, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
                 .addGroup(pn2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnPreDS)
                     .addComponent(lblChiSoDS)
-                    .addComponent(btnNextDS))
+                    .addComponent(btnNextDS)
+                    .addComponent(btnXuatExcel))
                 .addContainerGap())
         );
 
@@ -987,6 +1005,79 @@ public class SanPhamJInternalFrame extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_cboMauBSItemStateChanged
 
+    private void btnXuatExcelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnXuatExcelMouseClicked
+       XSSFWorkbook workbook = new XSSFWorkbook();
+        XSSFSheet sheet = workbook.createSheet("Sản phẩm");
+
+        XSSFRow row = null;
+        Cell cell = null;
+
+        row = sheet.createRow((short) 2);
+        row.setHeight((short) 500);
+        cell = row.createCell(0, CellType.STRING);
+        cell.setCellValue("STT");
+        cell = row.createCell(1, CellType.STRING);
+        cell.setCellValue("Mã sản phẩm");
+        cell = row.createCell(2, CellType.STRING);
+        cell.setCellValue("Mã thương hiệu");
+        cell = row.createCell(3, CellType.STRING);
+        cell.setCellValue("Tên sản phẩm");
+        cell = row.createCell(4, CellType.STRING);
+        cell.setCellValue("Giá bán");
+        cell = row.createCell(5, CellType.STRING);
+        cell.setCellValue("Số lượng");
+        cell = row.createCell(6, CellType.STRING);
+        cell.setCellValue("Ảnh sản phẩm");
+        cell = row.createCell(7, CellType.STRING);
+        cell.setCellValue("Chi tiết");
+        cell = row.createCell(8, CellType.STRING);
+        cell.setCellValue("Trạng thái");
+
+        if (list != null) {
+            FileOutputStream fis = null;
+            try {
+                int s = list.size();
+                for (int i = 0; i < s; i++) {
+                    SanPham sp1 = list.get(i);
+                    row = sheet.createRow((short) 4 + i);
+                    cell = row.createCell(0, CellType.NUMERIC);
+                    cell.setCellValue(i + 1);
+
+                    cell = row.createCell(1, CellType.STRING);
+                    cell.setCellValue(sp1.getMaSP());
+
+                    cell = row.createCell(2, CellType.STRING);
+                    cell.setCellValue(sp1.getMaThuongHieu());
+
+                    cell = row.createCell(3, CellType.STRING);
+                    cell.setCellValue(sp1.getTenSP());
+
+                    cell = row.createCell(4, CellType.STRING);
+                    cell.setCellValue(sp1.getDonGia());
+
+                    cell = row.createCell(5, CellType.STRING);
+                    cell.setCellValue(sp1.getSoLuong());
+
+                    cell = row.createCell(6, CellType.STRING);
+                    cell.setCellValue(sp1.getAnhSP());
+
+                    cell = row.createCell(7, CellType.STRING);
+                    cell.setCellValue(sp1.getChiTiet());
+
+                    cell = row.createCell(9, CellType.STRING);
+                    cell.setCellValue(sp1.isTrangThai());
+                }
+                //save file
+                File f = new File("src/sanpham.xlsx");
+                fis = new FileOutputStream(f);
+                workbook.write(fis);
+                fis.close();
+            } catch (Exception ex) {
+                ex.printStackTrace();
+            }
+        }
+    }//GEN-LAST:event_btnXuatExcelMouseClicked
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnFirst;
@@ -1007,6 +1098,7 @@ public class SanPhamJInternalFrame extends javax.swing.JInternalFrame {
     private javax.swing.JButton btnThemTH;
     private javax.swing.JButton btnVoHieuHoa;
     private javax.swing.JButton btnVoHieuHoaTH;
+    private javax.swing.JButton btnXuatExcel;
     private javax.swing.JComboBox<String> cboKhuyenMai;
     private javax.swing.JComboBox<String> cboMauBS;
     private javax.swing.JComboBox<String> cboMauSacCT;
