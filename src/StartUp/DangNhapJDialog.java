@@ -360,7 +360,7 @@ public class DangNhapJDialog extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void lblQuenMatKhauMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblQuenMatKhauMouseClicked
-//        quenMatKhau();
+        quenMatKhau();
     }//GEN-LAST:event_lblQuenMatKhauMouseClicked
 
     private void lblQuenMatKhauMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblQuenMatKhauMouseEntered
@@ -387,7 +387,6 @@ public class DangNhapJDialog extends javax.swing.JDialog {
                 MsgBoxHelper.alert(this, "Không được để trống tên đăng nhập");
             }
         }else{
-            
             dangnhap();
         }
     }//GEN-LAST:event_btnDangNhapActionPerformed
@@ -489,6 +488,8 @@ public class DangNhapJDialog extends javax.swing.JDialog {
         }
         //</editor-fold>
         //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
 
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -559,8 +560,8 @@ public class DangNhapJDialog extends javax.swing.JDialog {
         }
     }
     
-//    void quenMatKhau(){
-//        new QuenMatKhauJFrame().setVisible(true);
-//        this.dispose();
-//    }
+    void quenMatKhau(){
+        this.dispose();
+        new QuenMatKhauJFrame().setVisible(true);
+    }
 }
