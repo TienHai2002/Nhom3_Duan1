@@ -2,20 +2,20 @@ package model;
 
 public class SizeSanPham {
 
-    private String size;
+    private int size;
 
-    public SizeSanPham(String size) {
+    public SizeSanPham(int size) {
         this.size = size;
     }
 
     public SizeSanPham() {
     }
 
-    public String getSize() {
+    public int getSize() {
         return size;
     }
 
-    public void setSize(String size) {
+    public void setSize(int size) {
         this.size = size;
     }
 
