@@ -14,15 +14,18 @@ import javax.swing.Timer;
 public class ShoesSysJFrame extends javax.swing.JFrame {
 
     Timer t;
-//    LSGDJInternalFrame lichsugiaodich;
+    LSGDJInternalFrame lichsugiaodich;
     SanPhamJInternalFrame quanlisanpham;
     KhachHangJInternalFrame quanlikhachhang;
-//    NhaCungCapJInternalFrame quanlinhacungcap;
+    NhaCungCapJInternalFrame quanlinhacungcap;
     NhanVienJInternalFrame quanlinhanvien;
+    ThungRacJInternalFrame thungrac;
+    DoiMatKhauJInternalFrame doimatkhau;
+    GioHangJInternalFrame giohang;
     Color color;
     ImageIcon dangnhap = new ImageIcon("src/icon/Key.png");
     ImageIcon quenmk = new ImageIcon("src/icon/Unlock.png");
-    ImageIcon up = new ImageIcon("src/img/startup.png");
+    ImageIcon up = new ImageIcon("src/icon/startup.png");
     ImageIcon User = new ImageIcon("src/icon/Unknown person.png");
     ImageIcon doimk = new ImageIcon("src/icon/Refresh.png");
     ImageIcon dangxuat = new ImageIcon("src/icon/log out.png");
@@ -66,8 +69,8 @@ public class ShoesSysJFrame extends javax.swing.JFrame {
         jMenuItem1 = new javax.swing.JMenuItem();
         jMenuItem2 = new javax.swing.JMenuItem();
         mnuThietLap = new javax.swing.JMenu();
-        mnuChuDe = new javax.swing.JMenuItem();
-        jMenuItem6 = new javax.swing.JMenuItem();
+        mniChuDe = new javax.swing.JMenuItem();
+        mniThungRac = new javax.swing.JMenuItem();
         mnuUser = new javax.swing.JMenu();
         mniDangXuat = new javax.swing.JMenuItem();
         mniDoiMatKhau = new javax.swing.JMenuItem();
@@ -257,7 +260,7 @@ public class ShoesSysJFrame extends javax.swing.JFrame {
             pn2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pn2Layout.createSequentialGroup()
                 .addComponent(lblInfo)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 812, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 824, Short.MAX_VALUE)
                 .addComponent(lblDongHo)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lblExit)
@@ -334,18 +337,23 @@ public class ShoesSysJFrame extends javax.swing.JFrame {
         mnuThietLap.setToolTipText("-13382401");
         mnuThietLap.setPreferredSize(new java.awt.Dimension(100, 24));
 
-        mnuChuDe.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/draw.png"))); // NOI18N
-        mnuChuDe.setText("Chủ đề");
-        mnuChuDe.addActionListener(new java.awt.event.ActionListener() {
+        mniChuDe.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/draw.png"))); // NOI18N
+        mniChuDe.setText("Chủ đề");
+        mniChuDe.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                mnuChuDeActionPerformed(evt);
+                mniChuDeActionPerformed(evt);
             }
         });
-        mnuThietLap.add(mnuChuDe);
+        mnuThietLap.add(mniChuDe);
 
-        jMenuItem6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/Trash.png"))); // NOI18N
-        jMenuItem6.setText("Thùng Rác");
-        mnuThietLap.add(jMenuItem6);
+        mniThungRac.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/Trash.png"))); // NOI18N
+        mniThungRac.setText("Thùng Rác");
+        mniThungRac.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mniThungRacActionPerformed(evt);
+            }
+        });
+        mnuThietLap.add(mniThungRac);
 
         jMenuBar1.add(mnuThietLap);
 
@@ -399,12 +407,12 @@ public class ShoesSysJFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_btnGioHangMouseExited
 
     private void btnGioHangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGioHangActionPerformed
-
+        openGioHang();
     }//GEN-LAST:event_btnGioHangActionPerformed
 
-    private void mnuChuDeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuChuDeActionPerformed
+    private void mniChuDeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mniChuDeActionPerformed
         chonMau();
-    }//GEN-LAST:event_mnuChuDeActionPerformed
+    }//GEN-LAST:event_mniChuDeActionPerformed
 
     private void btnLSGDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLSGDActionPerformed
         openLichSuGiaoDich();
@@ -431,16 +439,20 @@ public class ShoesSysJFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_mniDangXuatActionPerformed
 
     private void mniDoiMatKhauActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mniDoiMatKhauActionPerformed
-//        if (!ShareHelper.isLogin()) {
-//            new QuenMatKhauJFrame().setVisible(true);
-//        } else {
-//            new DoiMatKhauJInternalFrame().setVisible(true);
-//        }
+        if (!ShareHelper.isLogin()) {
+            new QuenMatKhauJFrame().setVisible(true);
+        } else {
+            new DoiMatKhauJInternalFrame().setVisible(true);
+        }
     }//GEN-LAST:event_mniDoiMatKhauActionPerformed
 
     private void lblExitMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblExitMouseClicked
         System.exit(0);
     }//GEN-LAST:event_lblExitMouseClicked
+
+    private void mniThungRacActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mniThungRacActionPerformed
+        mniOpenThungRac();
+    }//GEN-LAST:event_mniThungRacActionPerformed
 
     /**
      * @param args the command line arguments
@@ -469,6 +481,8 @@ public class ShoesSysJFrame extends javax.swing.JFrame {
         }
         //</editor-fold>
         //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -492,7 +506,6 @@ public class ShoesSysJFrame extends javax.swing.JFrame {
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
-    private javax.swing.JMenuItem jMenuItem6;
     private javax.swing.JPopupMenu.Separator jSeparator1;
     private javax.swing.JToolBar.Separator jSeparator2;
     private javax.swing.JToolBar.Separator jSeparator3;
@@ -501,12 +514,13 @@ public class ShoesSysJFrame extends javax.swing.JFrame {
     private javax.swing.JLabel lblExit;
     private javax.swing.JLabel lblInfo;
     private javax.swing.JMenu mni;
+    private javax.swing.JMenuItem mniChuDe;
     private javax.swing.JMenuItem mniDangXuat;
     private javax.swing.JMenuItem mniDoiMatKhau;
     private javax.swing.JMenuItem mniGioiThieu;
     private javax.swing.JMenuItem mniHuongDan;
+    private javax.swing.JMenuItem mniThungRac;
     private javax.swing.JMenu mnu;
-    private javax.swing.JMenuItem mnuChuDe;
     private javax.swing.JMenu mnuThietLap;
     private javax.swing.JMenu mnuUser;
     private javax.swing.JPanel pn1;
@@ -562,24 +576,24 @@ public class ShoesSysJFrame extends javax.swing.JFrame {
     }
 
     private void openLichSuGiaoDich() {
-//        if (ShareHelper.isLogin()) {
-//            if (!ShareHelper.isManager()) {
-//                MsgBoxHelper.alert(this, "Bạn ko có quyền truy cập !");
-//            } else {
-//                try {
-//                    lichsugiaodich.setClosed(true);
-//                } catch (Exception e) {
-//                }
-//                lichsugiaodich = new LSGDJInternalFrame(color);
-//                int x = this.getWidth() / 2 - lichsugiaodich.getWidth() / 2;
-//                int y = (this.getHeight() - 40) / 2 - lichsugiaodich.getHeight() / 2 - 40;
-//                lichsugiaodich.setLocation(x, y);
-//                desktop.add(lichsugiaodich);
-//                lichsugiaodich.setVisible(true);
-//            }
-//        } else {
-//            MsgBox.alert(this, "Vui lòng đăng nhập !");
-//        }
+        if (ShareHelper.isLogin()) {
+            if (!ShareHelper.isManager()) {
+                MsgBoxHelper.alert(this, "Bạn ko có quyền truy cập !");
+            } else {
+                try {
+                    lichsugiaodich.setClosed(true);
+                } catch (Exception e) {
+                }
+                lichsugiaodich = new LSGDJInternalFrame(color);
+                int x = this.getWidth() / 2 - lichsugiaodich.getWidth() / 2;
+                int y = (this.getHeight() - 40) / 2 - lichsugiaodich.getHeight() / 2 - 40;
+                lichsugiaodich.setLocation(x, y);
+                desktop.add(lichsugiaodich);
+                lichsugiaodich.setVisible(true);
+            }
+        } else {
+            MsgBoxHelper.alert(this, "Vui lòng đăng nhập !");
+        }
     }
 
     private void openQuanLiSanPham() {
@@ -621,24 +635,24 @@ public class ShoesSysJFrame extends javax.swing.JFrame {
     }
 
     private void openNhaCungCap() {
-//        if (Auth.isLogin()) {
-//            if (!Auth.isManager()) {
-//                MsgBox.alert(this, "Bạn ko có quyền truy cập !");
-//            } else {
-//                try {
-//                    quanlinhacungcap.setClosed(true);
-//                } catch (Exception e) {
-//                }
-//                quanlinhacungcap = new NhaCungCapJInternalFrame(color);
-//                int x = this.getWidth() / 2 - quanlinhacungcap.getWidth() / 2;
-//                int y = (this.getHeight() - 40) / 2 - quanlinhacungcap.getHeight() / 2 - 40;
-//                quanlinhacungcap.setLocation(x, y);
-//                desktop.add(quanlinhacungcap);
-//                quanlinhacungcap.setVisible(true);
-//            }
-//        } else {
-//            MsgBox.alert(this, "Vui lòng đăng nhập !");
-//        }
+        if (ShareHelper.isLogin()) {
+            if (!ShareHelper.isManager()) {
+                MsgBoxHelper.alert(this, "Bạn ko có quyền truy cập !");
+            } else {
+                try {
+                    quanlinhacungcap.setClosed(true);
+                } catch (Exception e) {
+                }
+                quanlinhacungcap = new NhaCungCapJInternalFrame(color);
+                int x = this.getWidth() / 2 - quanlinhacungcap.getWidth() / 2;
+                int y = (this.getHeight() - 40) / 2 - quanlinhacungcap.getHeight() / 2 - 40;
+                quanlinhacungcap.setLocation(x, y);
+                desktop.add(quanlinhacungcap);
+                quanlinhacungcap.setVisible(true);
+            }
+        } else {
+            MsgBoxHelper.alert(this, "Vui lòng đăng nhập !");
+        }
     }
 
     private void openNhanVien() {
@@ -657,6 +671,23 @@ public class ShoesSysJFrame extends javax.swing.JFrame {
                 desktop.add(quanlinhanvien);
                 quanlinhanvien.setVisible(true);
             }
+        } else {
+            MsgBoxHelper.alert(this, "Vui lòng đăng nhập !");
+        }
+    }
+
+    private void mniOpenThungRac() {
+        if (ShareHelper.isLogin()) {
+            try {
+                thungrac.setClosed(true);
+            } catch (Exception e) {
+            }
+            thungrac = new ThungRacJInternalFrame(color);
+            int x = this.getWidth() / 2 - thungrac.getWidth() / 2;
+            int y = (this.getHeight() - 40) / 2 - thungrac.getHeight() / 2 - 40;
+            thungrac.setLocation(x, y);
+            desktop.add(thungrac);
+            thungrac.setVisible(true);
         } else {
             MsgBoxHelper.alert(this, "Vui lòng đăng nhập !");
         }
@@ -699,6 +730,23 @@ public class ShoesSysJFrame extends javax.swing.JFrame {
             mniDangXuat.setIcon(dangxuat);
             mniDoiMatKhau.setText("Đổi Mật Khẩu");
             mniDoiMatKhau.setIcon(doimk);
+        }
+    }
+
+    void openGioHang() {
+        if (ShareHelper.isLogin()) {
+            try {
+                giohang.setClosed(true);
+            } catch (Exception e) {
+            }
+            giohang = new GioHangJInternalFrame();
+            int x = this.getWidth() / 2 - giohang.getWidth() / 2;
+            int y = (this.getHeight() - 40) / 2 - giohang.getHeight() / 2 - 40;
+            giohang.setLocation(x, y);
+            desktop.add(giohang);
+            giohang.setVisible(true);
+        } else {
+            MsgBoxHelper.alert(this, "Vui lòng đăng nhập !");
         }
     }
 }
