@@ -13,13 +13,13 @@ public class NhanVienDAO extends ShoesSysDAO<NhanVien, String> {
     String SQL_Insert = "INSERT INTO dbo.NhanVien (MaNV, TenNV, MatKhau, DiaChi, SDT, Email, NgaySinh, GioiTinh, AnhNV, TrangThai, VaiTro, MaXacNhan)  VALUES (?,?,'1',?,?,?,?,?,?,1,?,null)";
     String SQL_Update = "UPDATE dbo.NhanVien SET TenNV=?, DiaChi=?, SDT=?, Email=?, NgaySinh=?, GioiTinh=?, AnhNV=?, VaiTro=? WHERE MaNV=?";
     String SQL_VoHieuHoa = "UPDATE dbo.NhanVien SET TrangThai=0 WHERE MaNV = ?";
-    String SQL_SelectALL = "SELECT * FROM dbo.NhanVien";
-    String SQL_SelectID = "SELECT * FROM dbo.NhanVien WHERE MaNV=?";
+    String SQL_SelectALL = "SELECT * FROM dbo.NhanVien WHERE TrangThai=1";
+    String SQL_SelectID = "SELECT * FROM dbo.NhanVien WHERE MaNV=? AND TrangThai=1";
 
     @Override
     public void insert(NhanVien entity) {
         try {
-             helper.JdbcHelper.update(SQL_Insert,
+            helper.JdbcHelper.update(SQL_Insert,
                     entity.getMaNV(), entity.getTenNV(), entity.getDiaChi(), entity.getsDT(), entity.getEmail(),
                     entity.getNgaySinh(), entity.isGioiTinh(), entity.getAnhNV(), entity.isVaiTro());
         } catch (SQLException ex) {
@@ -30,7 +30,7 @@ public class NhanVienDAO extends ShoesSysDAO<NhanVien, String> {
     @Override
     public void update(NhanVien entity) {
         try {
-             helper.JdbcHelper.update(SQL_Update,
+            helper.JdbcHelper.update(SQL_Update,
                     entity.getTenNV(), entity.getDiaChi(), entity.getsDT(), entity.getEmail(),
                     entity.getNgaySinh(), entity.isGioiTinh(), entity.getAnhNV(), entity.isVaiTro(), entity.getMaNV());
         } catch (SQLException ex) {
@@ -41,7 +41,7 @@ public class NhanVienDAO extends ShoesSysDAO<NhanVien, String> {
     @Override
     public void vohieuhoa(String id) {
         try {
-             helper.JdbcHelper.update(SQL_VoHieuHoa, id);
+            helper.JdbcHelper.update(SQL_VoHieuHoa, id);
         } catch (SQLException ex) {
             Logger.getLogger(NhanVienDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -62,7 +62,7 @@ public class NhanVienDAO extends ShoesSysDAO<NhanVien, String> {
     protected List<NhanVien> selectBySql(String sql, Object... args) {
         List<NhanVien> list = new ArrayList<>();
         try {
-            ResultSet rs =  helper.JdbcHelper.query(sql, args);
+            ResultSet rs = helper.JdbcHelper.query(sql, args);
             while (rs.next()) {
                 NhanVien entity = new NhanVien();
                 entity.setMaNV(rs.getString("MaNV"));
@@ -88,7 +88,7 @@ public class NhanVienDAO extends ShoesSysDAO<NhanVien, String> {
 
     public void updateMaXacNhan(String MaXacNhan, String MaNV) {
         try {
-             helper.JdbcHelper.update("UPDATE dbo.NhanVien SET MaXacNhan = ? WHERE MaNV = ?",
+            helper.JdbcHelper.update("UPDATE dbo.NhanVien SET MaXacNhan = ? WHERE MaNV = ?",
                     MaXacNhan, MaNV);
         } catch (SQLException ex) {
             Logger.getLogger(NhanVienDAO.class.getName()).log(Level.SEVERE, null, ex);
@@ -97,7 +97,7 @@ public class NhanVienDAO extends ShoesSysDAO<NhanVien, String> {
 
     public void updateMatKhau(String MatKhau, String MaNV) {
         try {
-             helper.JdbcHelper.update("UPDATE dbo.NhanVien SET MatKhau = ? WHERE MaNV = ?",
+            helper.JdbcHelper.update("UPDATE dbo.NhanVien SET MatKhau = ? WHERE MaNV = ?",
                     MatKhau, MaNV);
         } catch (SQLException ex) {
             Logger.getLogger(NhanVienDAO.class.getName()).log(Level.SEVERE, null, ex);
@@ -110,4 +110,21 @@ public class NhanVienDAO extends ShoesSysDAO<NhanVien, String> {
         return this.selectBySql(sql, index);
     }
 
+    public List<NhanVien> selectPageTrash(int index) {
+        String sql = "SELECT * FROM dbo.NhanVien WHERE TrangThai = 0\n"
+                + "ORDER BY MaNV OFFSET ? * 10 ROWS FETCH NEXT 10 ROWS ONLY;";
+        return this.selectBySql(sql, index);
+    }
+    
+    public void khoiphuc(String id) {
+        try {
+            helper.JdbcHelper.update("UPDATE dbo.NhanVien SET TrangThai=1 WHERE MaNV = ?", id);
+        } catch (SQLException ex) {
+            Logger.getLogger(NhanVienDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    public List<NhanVien> selectAllTrash() {
+        return this.selectBySql("SELECT * FROM dbo.NhanVien WHERE TrangThai=0");
+    }
 }

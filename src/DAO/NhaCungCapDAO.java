@@ -81,4 +81,21 @@ public class NhaCungCapDAO extends ShoesSysDAO<NhaCungCap, String> {
         return this.selectBySql(sql, index);
     }
 
+    public List<NhaCungCap> selectPageTrash(int index) {
+        String sql = "SELECT * FROM dbo.NhaCungCap WHERE TrangThai = 0\n"
+                + "ORDER BY MaNCC OFFSET ? * 10 ROWS FETCH NEXT 10 ROWS ONLY;";
+        return this.selectBySql(sql, index);
+    }
+    
+    public void khoiphuc(String id) {
+        try {
+            helper.JdbcHelper.update("UPDATE dbo.NhaCungCap SET TrangThai=1 WHERE MaNCC = ?", id);
+        } catch (SQLException ex) {
+            Logger.getLogger(NhaCungCapDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    public List<NhaCungCap> selectAllTrash() {
+        return this.selectBySql("SELECT * FROM dbo.NhaCungCap WHERE TrangThai=0");
+    }
 }
