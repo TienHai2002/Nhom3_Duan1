@@ -68,7 +68,7 @@ public class KhuyenMaiDAO extends ShoesSysDAO<KhuyenMai, String> {
                 entity.setMaKM(rs.getString("MaKM"));
                 entity.setMaNV(rs.getString("MaNV"));
                 entity.setTenKM(rs.getString("TenKM"));
-                entity.setGiaTriKM(rs.getString("GiaTri"));
+                entity.setGiaTriKM(rs.getString("MaKM"));
                 entity.setNgayTao(rs.getString("NgayTao"));
                 entity.setGhiChu(rs.getString("GhiChu"));
                 list.add(entity);

@@ -10,18 +10,18 @@ import java.util.logging.Logger;
 
 public class HoaDonThanhToanDAO extends ShoesSysDAO<HoaDonThanhToan, String> {
 
-    String SQL_Insert = "INSERT INTO dbo.HoaDon (MaHDThanhToan, MaKhachHang, MaNhanVien, NgayThanhToan, DiemThuong, GhiChu)  VALUES (?,?,?,?,?,?)";
-    String SQL_Update = "UPDATE dbo.HoaDon SET MaKhachHang=?, MaNhanVien=?, NgayThanhToan=?, DiemThuong=?, GhiChu=? WHERE MaHDThanhToan=?";
-    String SQL_VoHieuHoa = "UPDATE dbo.HoaDon SET TrangThai=0 WHERE MaHDThanhToan = ?";
-    String SQL_SelectALL = "SELECT * FROM dbo.HoaDon";
-    String SQL_SelectID = "SELECT * FROM dbo.HoaDon WHERE MaHDThanhToan=?";
+    String SQL_Insert = "INSERT INTO dbo.HoaDonThanhToan (MaHDThanhToan, MaKhachHang, MaNhanVien, NgayThanhToan, DiemThuong, DoiDiem, GhiChu, TrangThai)  VALUES (?,?,?,?,?,?,?,1)";
+    String SQL_Update = "UPDATE dbo.HoaDonThanhToan SET MaKhachHang=?, MaNhanVien=?, NgayThanhToan=?, DiemThuong=?, GhiChu=? WHERE MaHDThanhToan=?";
+    String SQL_VoHieuHoa = "UPDATE dbo.HoaDonThanhToan SET TrangThai=0 WHERE MaHDThanhToan = ?";
+    String SQL_SelectALL = "SELECT * FROM dbo.HoaDonThanhToan";
+    String SQL_SelectID = "SELECT * FROM dbo.HoaDonThanhToan WHERE MaHDThanhToan=?";
 
     @Override
     public void insert(HoaDonThanhToan entity) {
         try {
             helper.JdbcHelper.update(SQL_Insert,
                     entity.getMaHDThanhToan(), entity.getMaKH(), entity.getMaNV(), entity.getNgayThanhToan(),
-                    entity.getDiemThuong(), entity.getGhiChu());
+                    entity.getDiemThuong(), entity.getDoiDiem(), entity.getGhiChu());
         } catch (SQLException ex) {
             Logger.getLogger(HoaDonThanhToanDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -70,6 +70,7 @@ public class HoaDonThanhToanDAO extends ShoesSysDAO<HoaDonThanhToan, String> {
                 entity.setMaNV(rs.getString("MaNhanVien"));
                 entity.setNgayThanhToan(rs.getString("NgayThanhToan"));
                 entity.setDiemThuong(rs.getInt("DiemThuong"));
+                entity.setDoiDiem(rs.getInt("DoiDiem"));
                 entity.setGhiChu(rs.getString("GhiChu"));
                 list.add(entity);
             }
@@ -78,5 +79,13 @@ public class HoaDonThanhToanDAO extends ShoesSysDAO<HoaDonThanhToan, String> {
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
+    }
+
+    public List<HoaDonThanhToan> selectPage(String keyword, String ngaybd, String ngaykt, int index) {
+        String sql = "SELECT * FROM dbo.HoaDonThanhToan\n"
+                + "WHERE MaHDThanhToan LIKE ? AND TrangThai=1\n"
+                + "AND NgayThanhToan BETWEEN ? AND ?\n"
+                + "ORDER BY MaHDThanhToan OFFSET ? * 15 ROWS FETCH NEXT 15 ROWS ONLY;";
+        return this.selectBySql(sql, "%" + keyword + "%", ngaybd, ngaykt, index);
     }
 }
