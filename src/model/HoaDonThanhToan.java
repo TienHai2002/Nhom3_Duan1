@@ -7,14 +7,16 @@ public class HoaDonThanhToan {
     private String maNV;
     private String ngayThanhToan;
     private int diemThuong;
+    private int doiDiem;
     private String ghiChu;
 
-    public HoaDonThanhToan(String maHDThanhToan, String maKH, String maNV, String ngayThanhToan, int diemThuong, String ghiChu) {
+    public HoaDonThanhToan(String maHDThanhToan, String maKH, String maNV, String ngayThanhToan, int diemThuong, int doiDiem, String ghiChu) {
         this.maHDThanhToan = maHDThanhToan;
         this.maKH = maKH;
         this.maNV = maNV;
         this.ngayThanhToan = ngayThanhToan;
         this.diemThuong = diemThuong;
+        this.doiDiem = doiDiem;
         this.ghiChu = ghiChu;
     }
 
@@ -59,6 +61,14 @@ public class HoaDonThanhToan {
 
     public void setDiemThuong(int diemThuong) {
         this.diemThuong = diemThuong;
+    }
+
+    public int getDoiDiem() {
+        return doiDiem;
+    }
+
+    public void setDoiDiem(int doiDiem) {
+        this.doiDiem = doiDiem;
     }
 
     public String getGhiChu() {
