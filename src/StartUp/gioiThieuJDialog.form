@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<Form version="1.3" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JDialogFormInfo">
+  <Properties>
+    <Property name="defaultCloseOperation" type="int" value="2"/>
+  </Properties>
+  <SyntheticProperties>
+    <SyntheticProperty name="formSizePolicy" type="int" value="1"/>
+    <SyntheticProperty name="generateCenter" type="boolean" value="false"/>
+  </SyntheticProperties>
+  <AuxValues>
+    <AuxValue name="FormSettings_autoResourcing" type="java.lang.Integer" value="0"/>
+    <AuxValue name="FormSettings_autoSetComponentName" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_generateFQN" type="java.lang.Boolean" value="true"/>
+    <AuxValue name="FormSettings_generateMnemonicsCode" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_i18nAutoMode" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_layoutCodeTarget" type="java.lang.Integer" value="1"/>
+    <AuxValue name="FormSettings_listenerGenerationStyle" type="java.lang.Integer" value="0"/>
+    <AuxValue name="FormSettings_variablesLocal" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_variablesModifier" type="java.lang.Integer" value="2"/>
+  </AuxValues>
+
+  <Layout>
+    <DimensionLayout dim="0">
+      <Group type="103" groupAlignment="0" attributes="0">
+          <Component id="jScrollPane1" alignment="0" pref="512" max="32767" attributes="0"/>
+          <Component id="lblLogo" alignment="0" max="32767" attributes="0"/>
+      </Group>
+    </DimensionLayout>
+    <DimensionLayout dim="1">
+      <Group type="103" groupAlignment="0" attributes="0">
+          <Group type="102" alignment="0" attributes="0">
+              <Component id="lblLogo" min="-2" pref="312" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="jScrollPane1" pref="171" max="32767" attributes="0"/>
+          </Group>
+      </Group>
+    </DimensionLayout>
+  </Layout>
+  <SubComponents>
+    <Component class="javax.swing.JLabel" name="lblLogo">
+      <Properties>
+        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+          <Image iconType="2" name="C:\Users\acer\OneDrive\Documents\GitHub\Nhom3_Duan1\src\icon\logogt.gif"/>
+        </Property>
+      </Properties>
+      <Events>
+        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="lblLogoMouseClicked"/>
+      </Events>
+    </Component>
+    <Container class="javax.swing.JScrollPane" name="jScrollPane1">
+      <AuxValues>
+        <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
+      </AuxValues>
+
+      <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
+      <SubComponents>
+        <Component class="javax.swing.JTextPane" name="txtContent">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="StartUp t&#x1ea1;o ra n&#x1ec1;n t&#x1ea3;ng gi&#xfa;p anh ch&#x1ecb; t&#x1ed1;i &#x1b0;u qu&#x1ea3;n l&#xfd; gi&#x1ea3;m chi ph&#xed; nh&#x1ea5;t c&#xf3; th&#x1ec3; c&#x169;ng nh&#x1b0; t&#x1ea1;o ra m&#x1ed9;t quy tr&#xec;nh chu&#x1ea9;n cho b&#xe1;n h&#xe0;ng m&#x1ed9;t c&#xe1;ch c&#xf3; h&#x1ec7; th&#x1ed1;ng chuy&#xea;n nghi&#x1ec7;p v&#xe0; nh&#x1ea5;t qu&#xe1;n.&#xa;*Quy tr&#xec;nh &#x111;&#x1a1;n gi&#x1ea3;n.&#xa;*M&#x1ed7;i ng&#x1b0;&#x1edd;i qu&#x1ea3;n l&#xfd;, nh&#xe2;n vi&#xea;n ch&#x1ecb;u tr&#xe1;ch nhi&#x1ec7;m m&#x1ed9;t kh&#xe2;u ri&#xea;ng nh&#x1b0;ng nh&#x1ea5;t qu&#xe1;n th&#x1ed1;ng nh&#x1ea5;t v&#xe0; &#x111;&#x1ed3;ng b&#x1ed9;&#xa;*Giao di&#x1ec7;n &#x111;&#x1a1;n gi&#x1ea3;n, tr&#x1ef1;c quan d&#x1ec5; s&#x1eed; d&#x1ee5;ng, ng&#x1b0;&#x1edd;i d&#xf9;ng c&#xf3; th&#x1ec3; s&#x1eed; d&#x1ee5;ng ngay tr&#xea;n c&#xe1;c thi&#x1ebf;t b&#x1ecb; s&#x1eb5;n c&#xf3; m&#xe0; kh&#xf4;ng c&#x1ea7;n &#x111;&#x1ea7;u t&#x1b0; thi&#x1ebf;t b&#x1ecb; m&#x1edb;i.&#xa;&#xa;Qu&#x1ea3;n l&#xfd; nh&#xe2;n vi&#xea;n:&#xa;V&#x1edb;i c&#xe1;c b&#xe1;o c&#xe1;o chi ti&#x1ebf;t, c&#xf9;ng v&#x1edb;i t&#xed;nh n&#x103;ng nh&#x1ead;n bi&#x1ebf;t t&#x1ef7; l&#x1ec7; v&#xe0; &#x111;&#x1eb7;c bi&#x1ec7;t kh&#xf4;ng th&#x1ec3; x&#xf3;a &#x111;&#x1b0;&#x1ee3;c &#x111;&#x1a1;n h&#xe0;ng.&#xa;Bi&#x1ebf;t &#x111;&#x1b0;&#x1ee3;c l&#x1ecb;ch s&#x1eed; c&#x1ee7;a m&#x1ed7;i th&#xe0;nh vi&#xea;n thao t&#xe1;c &#x111;&#x1a1;n h&#xe0;ng.&#xa;&#xa;Y&#xea;u c&#xe2;&#x300;u v&#xea;&#x300; m&#xf4;i tr&#x1b0;&#x1a1;&#x300;ng:&#xa;1. H&#xea;&#x323; &#x111;i&#xea;&#x300;u ha&#x300;nh b&#xe2;&#x301;t ky&#x300;&#xa;2. JDK 1.8 tr&#x1a1;&#x309; l&#xea;n&#xa;3. SQL Server 2008 tr&#x1a1;&#x309; l&#xea;n"/>
+          </Properties>
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="txtContentMouseClicked"/>
+          </Events>
+        </Component>
+      </SubComponents>
+    </Container>
+  </SubComponents>
+</Form>
