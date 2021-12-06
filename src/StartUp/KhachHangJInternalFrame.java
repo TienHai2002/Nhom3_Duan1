@@ -24,12 +24,13 @@ public class KhachHangJInternalFrame extends javax.swing.JInternalFrame {
     int index = 0;
     int check;
 
-    public KhachHangJInternalFrame(Color color) {
+    public KhachHangJInternalFrame(String color) {
         initComponents();
         init();
-        pn2.setBackground(color);
-        pn3.setBackground(color);
-        pn4.setBackground(color);
+        pn1.setBackground(new Color(Integer.parseInt(color, 16)));
+        pn2.setBackground(new Color(Integer.parseInt(color, 16)));
+        pn3.setBackground(new Color(Integer.parseInt(color, 16)));
+        pn4.setBackground(new Color(Integer.parseInt(color, 16)));
     }
 
     @SuppressWarnings("unchecked")
@@ -361,7 +362,7 @@ public class KhachHangJInternalFrame extends javax.swing.JInternalFrame {
                                     .addComponent(jLabel3)
                                     .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 268, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(txtMaNV, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(DCNgaySinh, javax.swing.GroupLayout.PREFERRED_SIZE, 268, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(DCNgaySinh, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(0, 0, Short.MAX_VALUE)))))
                 .addContainerGap())
         );
@@ -387,8 +388,8 @@ public class KhachHangJInternalFrame extends javax.swing.JInternalFrame {
                             .addComponent(rdoNam)
                             .addComponent(rdoNu)))
                     .addGroup(pn3Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(DCNgaySinh, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(DCNgaySinh, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
                 .addGroup(pn3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
@@ -544,6 +545,7 @@ public class KhachHangJInternalFrame extends javax.swing.JInternalFrame {
         cell = row.createCell(9, CellType.STRING);
         cell.setCellValue("Trạng thái");
 
+//        List<nhanVien> listItem = dao.select();
         if (list != null) {
             FileOutputStream fis = null;
             try {
@@ -787,6 +789,7 @@ public class KhachHangJInternalFrame extends javax.swing.JInternalFrame {
             index--;
             fillTable(index);
             updatePage();
+            btnNextPage.setEnabled(true);
         }
     }
 

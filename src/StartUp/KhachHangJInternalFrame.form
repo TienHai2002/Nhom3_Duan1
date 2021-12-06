@@ -350,7 +350,7 @@
                                               <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
                                               <Component id="txtEmail" min="-2" pref="268" max="-2" attributes="0"/>
                                               <Component id="txtMaNV" min="-2" pref="172" max="-2" attributes="0"/>
-                                              <Component id="DCNgaySinh" min="-2" pref="268" max="-2" attributes="0"/>
+                                              <Component id="DCNgaySinh" alignment="0" min="-2" pref="225" max="-2" attributes="0"/>
                                           </Group>
                                           <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                                       </Group>
@@ -388,8 +388,8 @@
                                   </Group>
                               </Group>
                               <Group type="102" attributes="0">
-                                  <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="DCNgaySinh" min="-2" pref="35" max="-2" attributes="0"/>
+                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                  <Component id="DCNgaySinh" min="-2" pref="30" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
