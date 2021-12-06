@@ -4,20 +4,18 @@ public class KhuyenMai {
 
     private String maKM;
     private String maNV;
-    private String maSP;
     private String tenKM;
-    private String giaTriKM;
     private String ngayTao;
     private String ghiChu;
+    private boolean trangThai;
 
-    public KhuyenMai(String maKM, String maNV, String maSP, String tenKM, String giaTriKM, String ngayTao, String ghiChu) {
+    public KhuyenMai(String maKM, String maNV, String tenKM, String ngayTao, String ghiChu, boolean trangThai) {
         this.maKM = maKM;
         this.maNV = maNV;
-        this.maSP = maSP;
         this.tenKM = tenKM;
-        this.giaTriKM = giaTriKM;
         this.ngayTao = ngayTao;
         this.ghiChu = ghiChu;
+        this.trangThai = trangThai;
     }
 
     public KhuyenMai() {
@@ -39,28 +37,12 @@ public class KhuyenMai {
         this.maNV = maNV;
     }
 
-    public String getMaSP() {
-        return maSP;
-    }
-
-    public void setMaSP(String maSP) {
-        this.maSP = maSP;
-    }
-
     public String getTenKM() {
         return tenKM;
     }
 
     public void setTenKM(String tenKM) {
         this.tenKM = tenKM;
-    }
-
-    public String getGiaTriKM() {
-        return giaTriKM;
-    }
-
-    public void setGiaTriKM(String giaTriKM) {
-        this.giaTriKM = giaTriKM;
     }
 
     public String getNgayTao() {
@@ -77,6 +59,14 @@ public class KhuyenMai {
 
     public void setGhiChu(String ghiChu) {
         this.ghiChu = ghiChu;
+    }
+
+    public boolean isTrangThai() {
+        return trangThai;
+    }
+
+    public void setTrangThai(boolean trangThai) {
+        this.trangThai = trangThai;
     }
 
 }

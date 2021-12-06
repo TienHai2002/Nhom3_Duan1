@@ -14,8 +14,9 @@ public class NhanVien {
     private boolean trangThai;
     private boolean vaiTro;
     private String maXacNhan;
+    private String mauNen;
 
-    public NhanVien(String maNV, String tenNV, String matKhau, String diaChi, String sDT, String Email, String ngaySinh, boolean gioiTinh, String anhNV, boolean trangThai, boolean vaiTro, String maXacNhan) {
+    public NhanVien(String maNV, String tenNV, String matKhau, String diaChi, String sDT, String Email, String ngaySinh, boolean gioiTinh, String anhNV, boolean trangThai, boolean vaiTro, String maXacNhan, String mauNen) {
         this.maNV = maNV;
         this.tenNV = tenNV;
         this.matKhau = matKhau;
@@ -28,6 +29,7 @@ public class NhanVien {
         this.trangThai = trangThai;
         this.vaiTro = vaiTro;
         this.maXacNhan = maXacNhan;
+        this.mauNen = mauNen;
     }
 
     public NhanVien() {
@@ -127,6 +129,14 @@ public class NhanVien {
 
     public void setMaXacNhan(String maXacNhan) {
         this.maXacNhan = maXacNhan;
+    }
+
+    public String getMauNen() {
+        return mauNen;
+    }
+
+    public void setMauNen(String mauNen) {
+        this.mauNen = mauNen;
     }
 
 }
