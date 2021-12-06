@@ -9,8 +9,9 @@ public class HoaDonThanhToan {
     private int diemThuong;
     private int doiDiem;
     private String ghiChu;
+    private boolean trangThai;
 
-    public HoaDonThanhToan(String maHDThanhToan, String maKH, String maNV, String ngayThanhToan, int diemThuong, int doiDiem, String ghiChu) {
+    public HoaDonThanhToan(String maHDThanhToan, String maKH, String maNV, String ngayThanhToan, int diemThuong, int doiDiem, String ghiChu, boolean trangThai) {
         this.maHDThanhToan = maHDThanhToan;
         this.maKH = maKH;
         this.maNV = maNV;
@@ -18,6 +19,7 @@ public class HoaDonThanhToan {
         this.diemThuong = diemThuong;
         this.doiDiem = doiDiem;
         this.ghiChu = ghiChu;
+        this.trangThai = trangThai;
     }
 
     public HoaDonThanhToan() {
@@ -77,6 +79,14 @@ public class HoaDonThanhToan {
 
     public void setGhiChu(String ghiChu) {
         this.ghiChu = ghiChu;
+    }
+
+    public boolean isTrangThai() {
+        return trangThai;
+    }
+
+    public void setTrangThai(boolean trangThai) {
+        this.trangThai = trangThai;
     }
 
 }

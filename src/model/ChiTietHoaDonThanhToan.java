@@ -4,22 +4,18 @@ public class ChiTietHoaDonThanhToan {
 
     private String maHD;
     private String maSP;
-    private String tenSP;
-    private String mau;
-    private int size;
     private double donGia;
     private int soLuong;
     private String khuyenMai;
+    private boolean trangThai;
 
-    public ChiTietHoaDonThanhToan(String maHD, String maSP, String tenSP, String mau, int size, double donGia, int soLuong, String khuyenMai) {
+    public ChiTietHoaDonThanhToan(String maHD, String maSP, double donGia, int soLuong, String khuyenMai, boolean trangThai) {
         this.maHD = maHD;
         this.maSP = maSP;
-        this.tenSP = tenSP;
-        this.mau = mau;
-        this.size = size;
         this.donGia = donGia;
         this.soLuong = soLuong;
         this.khuyenMai = khuyenMai;
+        this.trangThai = trangThai;
     }
 
     public ChiTietHoaDonThanhToan() {
@@ -39,30 +35,6 @@ public class ChiTietHoaDonThanhToan {
 
     public void setMaSP(String maSP) {
         this.maSP = maSP;
-    }
-
-    public String getTenSP() {
-        return tenSP;
-    }
-
-    public void setTenSP(String tenSP) {
-        this.tenSP = tenSP;
-    }
-
-    public String getMau() {
-        return mau;
-    }
-
-    public void setMau(String mau) {
-        this.mau = mau;
-    }
-
-    public int getSize() {
-        return size;
-    }
-
-    public void setSize(int size) {
-        this.size = size;
     }
 
     public double getDonGia() {
@@ -88,4 +60,13 @@ public class ChiTietHoaDonThanhToan {
     public void setKhuyenMai(String khuyenMai) {
         this.khuyenMai = khuyenMai;
     }
+
+    public boolean isTrangThai() {
+        return trangThai;
+    }
+
+    public void setTrangThai(boolean trangThai) {
+        this.trangThai = trangThai;
+    }
+    
 }

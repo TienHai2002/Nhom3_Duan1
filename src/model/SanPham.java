@@ -6,6 +6,7 @@ public class SanPham {
     private String maThuongHieu;
     private String tenSP;
     private double donGia;
+    private double giaNhap;
     private int soLuong;
     private String mau;
     private int size;
@@ -15,11 +16,12 @@ public class SanPham {
     private String chiTiet;
     private boolean TrangThai;
 
-    public SanPham(String maSP, String maThuongHieu, String tenSP, double donGia, int soLuong, String mau, int size, String maKM, String maNCC, String anhSP, String chiTiet, boolean TrangThai) {
+    public SanPham(String maSP, String maThuongHieu, String tenSP, double donGia, double giaNhap, int soLuong, String mau, int size, String maKM, String maNCC, String anhSP, String chiTiet, boolean TrangThai) {
         this.maSP = maSP;
         this.maThuongHieu = maThuongHieu;
         this.tenSP = tenSP;
         this.donGia = donGia;
+        this.giaNhap = giaNhap;
         this.soLuong = soLuong;
         this.mau = mau;
         this.size = size;
@@ -63,6 +65,14 @@ public class SanPham {
 
     public void setDonGia(double donGia) {
         this.donGia = donGia;
+    }
+
+    public double getGiaNhap() {
+        return giaNhap;
+    }
+
+    public void setGiaNhap(double giaNhap) {
+        this.giaNhap = giaNhap;
     }
 
     public int getSoLuong() {
