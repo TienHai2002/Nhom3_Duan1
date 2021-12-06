@@ -10,7 +10,7 @@ import model.KhuyenMai;
 
 public class KhuyenMaiDAO extends ShoesSysDAO<KhuyenMai, String> {
 
-    String SQL_Insert = "INSERT INTO dbo.KhuyenMai (MaKM, MaNV, TenKM, GiaTri, NgayTao, GhiChu, TrangThai)  VALUES (?,?,?,?,?,?,1)";
+    String SQL_Insert = "INSERT INTO dbo.KhuyenMai (MaKM, MaNV, TenKM, NgayTao, GhiChu, TrangThai)  VALUES (?,?,?,?,?,1)";
     String SQL_Update = "UPDATE dbo.KhuyenMai SET MaNV=?, TenKM=?, GiaTri=?, NgayTao=?, GhiChu=? WHERE MaKM=?";
     String SQL_VoHieuHoa = "UPDATE dbo.KhuyenMai SET TrangThai=0 WHERE MaKM = ?";
     String SQL_SelectALL = "SELECT * FROM dbo.KhuyenMai";
@@ -20,7 +20,7 @@ public class KhuyenMaiDAO extends ShoesSysDAO<KhuyenMai, String> {
     public void insert(KhuyenMai entity) {
         try {
             helper.JdbcHelper.update(SQL_Insert,
-                    entity.getMaKM(), entity.getMaNV(), entity.getTenKM(), entity.getGiaTriKM(),
+                    entity.getMaKM(), entity.getMaNV(), entity.getTenKM(),
                     entity.getNgayTao(), entity.getGhiChu());
         } catch (SQLException ex) {
             Logger.getLogger(KhuyenMaiDAO.class.getName()).log(Level.SEVERE, null, ex);
@@ -31,7 +31,7 @@ public class KhuyenMaiDAO extends ShoesSysDAO<KhuyenMai, String> {
     public void update(KhuyenMai entity) {
         try {
             helper.JdbcHelper.update(SQL_Update,
-                    entity.getMaNV(), entity.getTenKM(), entity.getGiaTriKM(), entity.getNgayTao(),
+                    entity.getMaNV(), entity.getTenKM(), entity.getNgayTao(),
                     entity.getGhiChu(), entity.getMaKM());
         } catch (SQLException ex) {
             Logger.getLogger(KhuyenMaiDAO.class.getName()).log(Level.SEVERE, null, ex);
@@ -68,7 +68,6 @@ public class KhuyenMaiDAO extends ShoesSysDAO<KhuyenMai, String> {
                 entity.setMaKM(rs.getString("MaKM"));
                 entity.setMaNV(rs.getString("MaNV"));
                 entity.setTenKM(rs.getString("TenKM"));
-                entity.setGiaTriKM(rs.getString("MaKM"));
                 entity.setNgayTao(rs.getString("NgayTao"));
                 entity.setGhiChu(rs.getString("GhiChu"));
                 list.add(entity);

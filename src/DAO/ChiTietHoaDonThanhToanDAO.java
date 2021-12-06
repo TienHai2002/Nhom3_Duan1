@@ -60,12 +60,9 @@ public class ChiTietHoaDonThanhToanDAO extends ShoesSysDAO<ChiTietHoaDonThanhToa
                 ChiTietHoaDonThanhToan entity = new ChiTietHoaDonThanhToan();
                 entity.setMaHD(rs.getString("MaHDThanhToan"));
                 entity.setMaSP(rs.getString("MaSanPham"));
-                entity.setTenSP(rs.getString("TenSanPham"));
-                entity.setMau(rs.getString("Mau"));
-                entity.setSize(rs.getInt("Size"));
                 entity.setDonGia(rs.getDouble("DonGia"));
                 entity.setSoLuong(rs.getInt("SoLuong"));
-                entity.setKhuyenMai(rs.getString("MaKM"));
+                entity.setKhuyenMai(rs.getString("KhuyenMai"));
                 list.add(entity);
             }
             rs.getStatement().getConnection().close();
@@ -76,10 +73,7 @@ public class ChiTietHoaDonThanhToanDAO extends ShoesSysDAO<ChiTietHoaDonThanhToa
     }
 
     public List<ChiTietHoaDonThanhToan> selectPage(String mahd) {
-        String sql = "SELECT A.MaHDThanhToan, A.MaSanPham, B.TenSanPham, B.Mau, B.Size, A.DonGia, A.SoLuong, B.MaKM\n"
-                + "FROM dbo.ChiTietHoaDonThanhToan A JOIN dbo.SanPham B ON B.MaSP = A.MaSanPham\n"
-                + "WHERE A.MaHDThanhToan=? AND A.TrangThai=1\n"
-                + "ORDER BY A.MaSanPham";
+        String sql = "SELECT * FROM dbo.ChiTietHoaDonThanhToan WHERE MaHDThanhToan=? AND TrangThai=1 ORDER BY MaSanPham";
         return this.selectBySql(sql, mahd);
     }
 
@@ -99,5 +93,13 @@ public class ChiTietHoaDonThanhToanDAO extends ShoesSysDAO<ChiTietHoaDonThanhToa
         } catch (SQLException ex) {
             Logger.getLogger(ChiTietHoaDonThanhToanDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }
+
+    public ChiTietHoaDonThanhToan selectTien(String id) {
+        List<ChiTietHoaDonThanhToan> list = this.selectBySql("SELECT MaHDThanhToan, MaSanPham, DonGia, SoLuong, KhuyenMai, TrangThai, SUM(SoLuong*DonGia) \n"
+                + "FROM dbo.ChiTietHoaDonThanhToan \n"
+                + "GROUP BY MaHDThanhToan, MaSanPham, DonGia, SoLuong, KhuyenMai, TrangThai\n"
+                + "HAVING MaHDThanhToan = ?", id);
+        return list.isEmpty() ? null : list.get(0);
     }
 }
