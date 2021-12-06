@@ -10,8 +10,8 @@ import java.util.logging.Logger;
 
 public class NhanVienDAO extends ShoesSysDAO<NhanVien, String> {
 
-    String SQL_Insert = "INSERT INTO dbo.NhanVien (MaNV, TenNV, MatKhau, DiaChi, SDT, Email, NgaySinh, GioiTinh, AnhNV, TrangThai, VaiTro, MaXacNhan)  VALUES (?,?,'1',?,?,?,?,?,?,1,?,null)";
-    String SQL_Update = "UPDATE dbo.NhanVien SET TenNV=?, DiaChi=?, SDT=?, Email=?, NgaySinh=?, GioiTinh=?, AnhNV=?, VaiTro=? WHERE MaNV=?";
+    String SQL_Insert = "INSERT INTO dbo.NhanVien (MaNV, TenNV, MatKhau, DiaChi, SDT, Email, NgaySinh, GioiTinh, AnhNV, TrangThai, VaiTro, MaXacNhan, MauNen)  VALUES (?,?,'1',?,?,?,?,?,?,1,?,null,'CCFFFF')";
+    String SQL_Update = "UPDATE dbo.NhanVien SET TenNV=?, DiaChi=?, SDT=?, Email=?, NgaySinh=?, GioiTinh=?, AnhNV=?, VaiTro=?, MauNen=? WHERE MaNV=?";
     String SQL_VoHieuHoa = "UPDATE dbo.NhanVien SET TrangThai=0 WHERE MaNV = ?";
     String SQL_SelectALL = "SELECT * FROM dbo.NhanVien WHERE TrangThai=1";
     String SQL_SelectID = "SELECT * FROM dbo.NhanVien WHERE MaNV=? AND TrangThai=1";
@@ -32,7 +32,7 @@ public class NhanVienDAO extends ShoesSysDAO<NhanVien, String> {
         try {
             helper.JdbcHelper.update(SQL_Update,
                     entity.getTenNV(), entity.getDiaChi(), entity.getsDT(), entity.getEmail(),
-                    entity.getNgaySinh(), entity.isGioiTinh(), entity.getAnhNV(), entity.isVaiTro(), entity.getMaNV());
+                    entity.getNgaySinh(), entity.isGioiTinh(), entity.getAnhNV(), entity.isVaiTro(), entity.getMauNen(), entity.getMaNV());
         } catch (SQLException ex) {
             Logger.getLogger(NhanVienDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -77,6 +77,7 @@ public class NhanVienDAO extends ShoesSysDAO<NhanVien, String> {
                 entity.setTrangThai(rs.getBoolean("TrangThai"));
                 entity.setVaiTro(rs.getBoolean("VaiTro"));
                 entity.setMaXacNhan(rs.getString("MaXacNhan"));
+                entity.setMauNen(rs.getString("MauNen"));
                 list.add(entity);
             }
             rs.getStatement().getConnection().close();

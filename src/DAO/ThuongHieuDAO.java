@@ -14,7 +14,7 @@ public class ThuongHieuDAO extends ShoesSysDAO<ThuongHieu, String>{
     String SQL_Update = "UPDATE dbo.ThuongHieu SET TenThuongHieu=? WHERE MaThuongHieu=?";
     String SQL_VoHieuHoa = "UPDATE dbo.ThuongHieu SET TrangThai=0 WHERE MaThuongHieu = ?";
     String SQL_SelectALL = "SELECT * FROM dbo.ThuongHieu WHERE TrangThai=1";
-    String SQL_SelectID = "SELECT * FROM dbo.ThuongHieu WHERE MaThuongHieu=?";
+    String SQL_SelectID = "SELECT * FROM dbo.ThuongHieu WHERE MaThuongHieu=? AND TrangThai=1";
     
     @Override
     public void insert(ThuongHieu entity) {

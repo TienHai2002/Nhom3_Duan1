@@ -88,4 +88,9 @@ public class HoaDonThanhToanDAO extends ShoesSysDAO<HoaDonThanhToan, String> {
                 + "ORDER BY MaHDThanhToan OFFSET ? * 15 ROWS FETCH NEXT 15 ROWS ONLY;";
         return this.selectBySql(sql, "%" + keyword + "%", ngaybd, ngaykt, index);
     }
+    
+    public HoaDonThanhToan selectThongKe(String ngay) {
+        List<HoaDonThanhToan> list = this.selectBySql("SELECT * FROM dbo.HoaDonThanhToan WHERE NgayThanhToan = ?", ngay);
+        return list.isEmpty() ? null : list.get(0);
+    }
 }

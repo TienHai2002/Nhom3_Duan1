@@ -1,24 +1,28 @@
 package DAO;
 
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import model.ChiTietHoaDonNhapHang;
 
 public class ChiTietHoaDonNhapHangDAO extends ShoesSysDAO<ChiTietHoaDonNhapHang, String> {
 
-    String SQL_Insert = "INSERT INTO dbo.ChiTietHoaDonNhapHang (MaHDThanhToan,MaSanPham,DonGia,SoLuong,KhuyenMai,TrangThai) VALUES (?,?,?,?,?,1)";
+    String SQL_Insert = "INSERT INTO dbo.ChiTietHoaDonNhapHang (MaHDNhapHang,MaSP,GiaNhap,SoLuong) VALUES (?,?,?,?)";
     String SQL_Update = "";
-    String SQL_VoHieuHoa = "UPDATE dbo.ChiTietHoaDonThanhToan SET TrangThai=0 WHERE MaHDThanhToan=? AND MaSanPham=?";
-    String SQL_SelectALL = "SELECT A.MaHDNhapHang, A.MaSP, B.TenSanPham, C.TenThuongHieu, A.GiaNhap, A.SoLuong, D.NgayNhapHang, D.MaNV, D.MaNCC\n"
-            + "FROM dbo.ChiTietHoaDonNhapHang A JOIN dbo.SanPham B ON B.MaSP = A.MaSP \n"
-            + "JOIN dbo.ThuongHieu C ON C.MaThuongHieu = B.MaThuongHieu\n"
-            + "JOIN dbo.HoaDonNhapHang D ON D.MaHDNhapHang = A.MaHDNhapHang";
-    String SQL_SelectID = "SELECT * FROM dbo.ChiTietHoaDonThanhToan WHERE MaHDThanhToan=? AND MaSanPham=?";
+    String SQL_VoHieuHoa = "";
+    String SQL_SelectALL = "SELECT * FROM dbo.ChiTietHoaDonNhapHang";
+    String SQL_SelectID = "SELECT * FROM dbo.ChiTietHoaDonNhapHang WHERE MaHDNhapHang=? AND MaSP=?";
 
     @Override
     public void insert(ChiTietHoaDonNhapHang entity) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        try {
+            helper.JdbcHelper.update(SQL_Insert, entity.getMaHDNhapHang(), entity.getMaSP(), entity.getGiaNhap(), entity.getSoLuong());
+        } catch (SQLException ex) {
+            Logger.getLogger(ChiTietHoaDonNhapHangDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     @Override
@@ -51,13 +55,8 @@ public class ChiTietHoaDonNhapHangDAO extends ShoesSysDAO<ChiTietHoaDonNhapHang,
                 ChiTietHoaDonNhapHang entity = new ChiTietHoaDonNhapHang();
                 entity.setMaHDNhapHang(rs.getString("MaHDNhapHang"));
                 entity.setMaSP(rs.getString("MaSP"));
-                entity.setTenSP(rs.getString("TenSanPham"));
-                entity.setThuongHieu(rs.getString("TenThuongHieu"));
                 entity.setGiaNhap(rs.getDouble("GiaNhap"));
                 entity.setSoLuong(rs.getInt("SoLuong"));
-                entity.setNgayNhap(rs.getString("NgayNhapHang"));
-                entity.setMaNV(rs.getString("MaNV"));
-                entity.setMaNCC(rs.getString("MaNCC"));
                 list.add(entity);
             }
             rs.getStatement().getConnection().close();
@@ -67,14 +66,14 @@ public class ChiTietHoaDonNhapHangDAO extends ShoesSysDAO<ChiTietHoaDonNhapHang,
         }
     }
 
-    public List<ChiTietHoaDonNhapHang> selectPage(String mancc, int index) {
-        String sql = "SELECT A.MaHDNhapHang, A.MaSP, B.TenSanPham, C.TenThuongHieu, A.GiaNhap, A.SoLuong, D.NgayNhapHang, D.MaNV, D.MaNCC\n"
-                + "FROM dbo.ChiTietHoaDonNhapHang A JOIN dbo.SanPham B ON B.MaSP = A.MaSP \n"
-                + "JOIN dbo.ThuongHieu C ON C.MaThuongHieu = B.MaThuongHieu\n"
-                + "JOIN dbo.HoaDonNhapHang D ON D.MaHDNhapHang = A.MaHDNhapHang\n"
-                + "WHERE D.MaNCC=?\n"
-                + "ORDER BY A.MaSP OFFSET ? * 5 ROWS FETCH NEXT 5 ROWS ONLY";
-        return this.selectBySql(sql, mancc, index);
+    public ChiTietHoaDonNhapHang selectByMa(String masp) {
+        List<ChiTietHoaDonNhapHang> list = this.selectBySql("SELECT * FROM dbo.ChiTietHoaDonNhapHang\n"
+                + "WHERE MaSP=?", masp);
+        return list.isEmpty() ? null : list.get(0);
     }
 
+    public ChiTietHoaDonNhapHang selectByMHD(String id) {
+        List<ChiTietHoaDonNhapHang> list = this.selectBySql("SELECT * FROM dbo.ChiTietHoaDonNhapHang WHERE MaHDNhapHang=?", id);
+        return list.isEmpty() ? null : list.get(0);
+    }
 }
